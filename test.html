@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>My tasks</h1>
+
+        <div v-for="task in tasks">
+            <!-- <div class="">{{ task.name }}</div> -->
+            <button v-on:click="sendData(task)">Add 1</button>
+            <!-- <task-template :task="task"></task-template> -->
+            <!-- <myTask :task="task"></myTask> -->
+        </div>
+
+        <div>
+            <task-template inline-template :task="selectedTask">
+                <div v-if="task">
+                    <div class="">{{ task }}</div>
+                    Now you see me
+                </div>
+                <!-- <div v-else>
+                    Now you don't
+                </div> -->
+            </task-template>
+        </div>
+        <!-- <task-template1 inline-template :task="task">
+                    <h1>My tasks</h1>
+                    <div class="">{{ task.name }}</div>
+                </task-template1> -->
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.js"></script>
+<script>
+    var myTask = Vue.component('task-template', {
+        // template: '#task-template',
+        props: ['task'],
+        data: function() {
+                if (this.task) {
+                    return this.task; //Notice: in components data should return an object. For example "return { someProp: 1 }"
+                } else {
+                    return {};
+                }
+            }
+            // props: ['task']
+    });
+
+    new Vue({
+        el: '#app',
+        data: {
+            tasks: [{
+                name: "task 1",
+                completed: false
+            }, {
+                name: "task 2",
+                completed: false
+            }, {
+                name: "task 3",
+                completed: true
+            }],
+            selectedTask: null,
+        },
+        components: {
+            myTask: myTask
+        },
+        methods: {
+            sendData: function(task) {
+                console.log(task.name);
+                this.selectedTask = task.name;
+            }
+        },
+        computed: {
+
+        },
+        ready: function() {}
+    });
+</script>
+
+</html>
+
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.js"></script> -->
+
+
+
+
+
+
+
+<!-- <template id="task-template">
+  <h1>My tasks</h1>
+  <div class="">{{ task.name }}</div>
+</template> -->
