@@ -462,7 +462,7 @@
      /* position: absolute; */
      padding: 1%;
      perspective: 1000px;
-     transition: all 1s;
+     /* transition: all 1s; */
  }
  
  .heroImageAnim:hover {
