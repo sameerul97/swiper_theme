@@ -52,6 +52,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $(".slideContainer").attr("style", previousCss ? previousCss : "");
     console.log(optionHeight, parallax)
 
+    $(document).on('mousemove', function(e) {
+        // $('.myDiv').css('top', e.pageY);
+        // $('.myDiv').css('left', e.pageX);
+        var x = e.clientX;
+        var y = e.clientY;
+        var newposX = x;
+        var newposY = y;
+        $(".myDiv").css("transform", "translate3d(" + newposX + "px," + newposY + "px,0px)");
+    });
+    // });
+
     // Scrollmagic Init trigger contentHeroImage once
     // var scene = new ScrollMagic.Scene({
     //         triggerElement: '.contentHeroImage'
@@ -114,13 +125,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var tlSceneAction2 = new TimelineMax();
     tlSceneAction2.to("#infoSlideBackgroundimage", 1.5, {
         duration: 2.5,
-        ease: Expo.easeInOut,
+        ease: Power1.easeOut,
         scale: 1.1
     });
     tlSceneAction2.to("#infoSlideBackgroundimage", 1.5, {
         duration: 2.5,
-        ease: Expo.easeInOut,
-        scale: 1.6
+        ease: Power1.easeOut,
+        scale: 1.3
     });
     var slideHeroImageScene = new ScrollMagic.Scene({
             triggerElement: ".contentHeroImageContainer",

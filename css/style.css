@@ -474,6 +474,13 @@
      cursor: pointer;
  }
  
+ .myDiv {
+     position: absolute;
+     height: 10px;
+     width: 10px;
+     border: solid 1px #fc0;
+ }
+ 
  @keyframes shaky {
      10%,
      90% {
