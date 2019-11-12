@@ -465,8 +465,13 @@
      /* transition: all 1s; */
  }
  
+ .layer {
+     box-shadow: 0 32px 40px -20px rgba(0, 0, 0, 0.65);
+ }
+ 
  .heroImageAnim:hover {
      animation: shaky 0.82s cubic-bezier(.36, .07, .19, .97) infinite;
+     cursor: pointer;
  }
  
  @keyframes shaky {

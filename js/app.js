@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var scene = document.getElementById('js-scene');
     console.log(scene)
     parallax = new Parallax(scene, {
-        selector: '.layer'
+        selector: '.layer',
     });
 
     $("#gallery").css({ "height": $("#gallery").outerHeight() * 1.2 + "px" })
@@ -52,9 +52,62 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $(".slideContainer").attr("style", previousCss ? previousCss : "");
     console.log(optionHeight, parallax)
 
+    // Scrollmagic Init trigger contentHeroImage once
+    // var scene = new ScrollMagic.Scene({
+    //         triggerElement: '.contentHeroImage'
+    //     })
+    //     .setPin(slides[i])
+    //     .addIndicators()
+    //     .addTo(controller)
+    //     .triggerHook(0.10)
+    //     .reverse(true)
+    //     .on('enter', function(e) {
+    //         // panel = $(e.target.triggerElement()).prop('id');
+    //         $('.contentHeroImage').css({
+    //             "transform": 'rotate(50deg)'
+    //         });
+    //         // $('.circle.c-'+panel).addClass('active');
+    //     });
+    // var controller = new ScrollMagic.Controller();
 
+    // var tween_1 = TweenMax.to('.contentHeroImage', 0.5, {
+    //     left: '53%',
+    //     delay: .1
+    // });
 
+    // var containerScene = new ScrollMagic.Scene({
+    //         triggerElement: '#infoSlideBackgroundimage',
+    //         offset: -100,
+    //         reverse: false
+    //     })
+    //     .setTween(tween_1)
+    //     .addIndicators()
+    //     .addTo(controller);
 
+    var controller = new ScrollMagic.Controller();
+    // Set Scene
+    var tlsetScene = new TimelineMax();
+    tlsetScene.set(".contentHeroImage", { rotation: 20, yPercent: "90%" });
+    var containerSetScene = new ScrollMagic.Scene({
+            triggerElement: '.contentHeroImageContainer',
+            triggerHook: 0.95,
+            reverse: true
+        })
+        .setTween(tlsetScene)
+        // .addIndicators()
+        .addTo(controller);
+
+    // Scene Action
+    var tlSceneAction = new TimelineMax();
+    tlSceneAction.to(".contentHeroImage", 1, { rotation: 0, yPercent: "0%" });
+    var containerSceneAction = new ScrollMagic.Scene({
+            triggerElement: '.contentHeroImageContainer',
+            triggerHook: 0.5,
+            reverse: true
+        })
+        .setTween(tlSceneAction)
+        // .addIndicators()
+        .addTo(controller);
 
 
     document.getElementById("gallery").addEventListener("click", function() {
