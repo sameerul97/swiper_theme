@@ -41,7 +41,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     var scene = document.getElementById('js-scene');
     console.log(scene)
-    parallax = new Parallax(scene);
+    parallax = new Parallax(scene, {
+        selector: '.layer'
+    });
 
     $("#gallery").css({ "height": $("#gallery").outerHeight() * 1.2 + "px" })
     $("#gallery").css({ "margin-top": $("#gallery").height() / 7 + "px" })
