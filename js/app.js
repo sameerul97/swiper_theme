@@ -102,13 +102,34 @@ document.addEventListener("DOMContentLoaded", function(event) {
     tlSceneAction.to(".contentHeroImage", 1, { rotation: 0, yPercent: "0%" });
     var containerSceneAction = new ScrollMagic.Scene({
             triggerElement: '.contentHeroImageContainer',
-            triggerHook: 0.5,
+            triggerHook: 0.7,
             reverse: true
         })
         .setTween(tlSceneAction)
         // .addIndicators()
         .addTo(controller);
 
+
+    // Scene Action2
+    var tlSceneAction2 = new TimelineMax();
+    tlSceneAction2.to("#infoSlideBackgroundimage", 1.5, {
+        duration: 2.5,
+        ease: Expo.easeInOut,
+        scale: 1.1
+    });
+    tlSceneAction2.to("#infoSlideBackgroundimage", 1.5, {
+        duration: 2.5,
+        ease: Expo.easeInOut,
+        scale: 1.6
+    });
+    var slideHeroImageScene = new ScrollMagic.Scene({
+            triggerElement: ".contentHeroImageContainer",
+            duration: "70%",
+            triggerHook: 0.80
+        })
+        // .addIndicators()
+        .setTween(tlSceneAction2)
+        .addTo(controller);
 
     document.getElementById("gallery").addEventListener("click", function() {
         // var scene = document.getElementById('js-scene');
