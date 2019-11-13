@@ -12,6 +12,7 @@ var imgData = {
 var wrapperId, swiper_slider_id;
 // Move previous three slides and the next three slides before animating the clicked Image
 var firstThree, nextThree;
+// var TimelineMax = new TimelineMax();
 // store.commit('addToArray', 10)
 // console.log(store.commit('addToArray', 10))
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -22,6 +23,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var image = document.getElementsByClassName('bg1');
     $img = $("body").find('.hero .img-bg-props');
     console.log(store.getters.getSwiperInitialData);
+
+
+    // console.log(optionHeight, parallax)
 
     // Gallery init
     console.log($("#gallery").outerHeight())
@@ -45,8 +49,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $("#gallery").css({ "margin-top": tempHeight / 7 + "px" })
     $("#gallery").css({ "margin-bottom": tempHeight / 7 + "px" })
     $(".slideContainer").attr("style", previousCss ? previousCss : "");
-    // console.log(optionHeight, parallax)
-
 
 
     // Animating heroSliderImage

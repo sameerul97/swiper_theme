@@ -22,8 +22,9 @@ var myTask = Vue.component('infocontent-template', {
             projectTitle: this.project,
             count: 0,
             galleryAnimated: true,
-            // imgData: store.getters.getSwiperAnimData
-            // required: true
+            tl0: new TimelineMax()
+                // imgData: store.getters.getSwiperAnimData
+                // required: true
         } //Notice: in components data should return an object. For example "return { someProp: 1 }"
         // } else {
         // return {};
@@ -41,7 +42,11 @@ var myTask = Vue.component('infocontent-template', {
     },
     content: {},
     watch: {
-
+        galleryAnimated: function() {
+            if (!galleryAnimated) {
+                this.smgInitGallery();
+            }
+        },
         project: function(newVal, oldVal) { // watch it
 
 
@@ -82,8 +87,16 @@ var myTask = Vue.component('infocontent-template', {
     methods: {
         greet: function(event) {
 
-            $(".imageWrapperGridStyle").addClass("imageWrapper");
-            $(".imageWrapper").removeClass("imageWrapperGridStyle")
+            // Call Mutation method
+            // if (this.count === 0) {
+            //     store.commit('testMutation', "TEST");
+            //     this.count++;
+            //     // this.imgData = store.getters.getSwiperAnimData;
+            // } // Call Mutation method
+            // else {
+            // store.commit('testMutation', "TEST 222")
+            //         // this.imgData = store.getters.getSwiperAnimData;
+            // }
 
             var imageData = store.getters.getSwiperAnimData;
             var imgData = imageData.cssProps;
@@ -164,35 +177,25 @@ var myTask = Vue.component('infocontent-template', {
         },
         galleryInit: function() {
             document.getElementById("gallery").addEventListener("click", function() {
-                    // var scene = document.getElementById('js-scene');
-                    // parallax = new Parallax(scene);
-                    parallax.destroy();
-                    parallax = null;
-                    // this.galleryAnimated = false;
-                    var tl0 = new TimelineMax();
-                    $(".heroImageAnim").removeClass("heroImageAnim")
+                // var scene = document.getElementById('js-scene');
+                // parallax = new Parallax(scene);
+                parallax.destroy();
+                parallax = null;
+                this.galleryAnimated = false;
+                var tl0 = new TimelineMax();
+                $(".heroImageAnim").removeClass("heroImageAnim")
 
-                    $(".imageWrapper").addClass("imageWrapperGridStyle");
-
-
-                    // $(".imageWrapper").css({
-                    //         transition: "all 0.3s ease",
-                    //         left: "0px",
-                    //         top: "0px",
-                    //         height: "auto",
-                    //         padding: "1%",
-                })
-                // tl0.to('.imageWrapper', 1, {
-                //     duration: 1,
-                //     ease: Expo.easeInOut,
-                //     left: "0px",
-                //     top: "0px",
-                //     height: "auto",
-                //     padding: "1%",
-                //     // position: "",
-                // }, "-=1");
-                // });
-
+                tl0.to('.imageWrapper', 1, {
+                    duration: 1,
+                    ease: Expo.easeInOut,
+                    left: "0px",
+                    top: "0px",
+                    height: "auto",
+                    padding: "1%",
+                    // position: "",
+                }, "-=1");
+                tl0.clear(); //or .kill()
+            });
         },
         smgInitContentHeroImage: function() {
             var controller = new ScrollMagic.Controller();
