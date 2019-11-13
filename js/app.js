@@ -25,42 +25,69 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // Gallery init
     console.log($("#gallery").outerHeight())
-
-
-
     var previousCss = $(".slideContainer").attr("style");
-
     $(".slideContainer").css({
         // position: 'absolute', // Optional if #myDiv is already absolute
         visibility: 'hidden',
         display: 'block'
     });
-
     optionHeight = $("#gallery").height();
-    console.log(optionHeight, $("#js-scene").height())
-
+    // console.log(optionHeight, $("#js-scene").height())
+    // Setting Parallax for Gallery Section
     var scene = document.getElementById('js-scene');
-    console.log(scene)
     parallax = new Parallax(scene, {
         selector: '.layer',
+        hoverOnly: true
     });
-
-    $("#gallery").css({ "height": $("#gallery").outerHeight() * 1.2 + "px" })
-    $("#gallery").css({ "margin-top": $("#gallery").height() / 7 + "px" })
-    $("#gallery").css({ "margin-bottom": $("#gallery").height() / 7 + "px" })
-
+    var tempHeight = $("#gallery").outerHeight();
+    $("#gallery").css({ "height": tempHeight * 2 + "px" })
+    $("#js-scene").css({ "height": tempHeight * 2 + "px" })
+    $("#gallery").css({ "margin-top": tempHeight / 7 + "px" })
+    $("#gallery").css({ "margin-bottom": tempHeight / 7 + "px" })
     $(".slideContainer").attr("style", previousCss ? previousCss : "");
-    console.log(optionHeight, parallax)
+    // console.log(optionHeight, parallax)
 
-    $(document).on('mousemove', function(e) {
-        // $('.myDiv').css('top', e.pageY);
-        // $('.myDiv').css('left', e.pageX);
-        var x = e.clientX;
-        var y = e.clientY;
-        var newposX = x;
-        var newposY = y;
-        $(".myDiv").css("transform", "translate3d(" + newposX + "px," + newposY + "px,0px)");
+
+
+    // Animating heroSliderImage
+    var initOnce = false;
+    var pixelToInit = -(window.outerWidth / 9);
+    var controller = new ScrollMagic.Controller();
+    // ####### BUGGY causing performance issue and glitch whilst clicking the swiper
+    // Solution: Initiate this function once the slide is loaded and one 9th is scrolled to top. 
+    $(".infoSection").on('scroll', function(e) {
+        if ($(document.getElementById("infoSlideBackgroundimage")).offset().top <= pixelToInit && !initOnce) {
+            initOnce = true;
+            scrollMagicAndGsapInit2();
+        }
     });
+
+    function scrollMagicAndGsapInit2() {
+        // Scene Action2 
+        // Remove this transition once the slide close button is pressed, as this cause transition to take palce when clicking the swiper slide
+        $("#infoSlideBackgroundimage").css({ "transition": "all 0.3s ease 0s" })
+        var tlSceneAction2 = new TimelineMax();
+        tlSceneAction2.to("#infoSlideBackgroundimage", .3, {
+            scale: 1.1,
+            yPercent: "10%"
+        });
+        tlSceneAction2.to("#infoSlideBackgroundimage", .3, {
+            scale: 1.2,
+            yPercent: "15%"
+        });
+        tlSceneAction2.to("#infoSlideBackgroundimage", .3, {
+            scale: 1.3,
+            yPercent: "20%"
+        });
+        var slideHeroImageScene = new ScrollMagic.Scene({
+                triggerElement: ".contentHeroImageContainer",
+                duration: "70%",
+                triggerHook: 0.80
+            })
+            // .addIndicators()
+            .setTween(tlSceneAction2)
+            .addTo(controller);
+    }
     // });
 
     // Scrollmagic Init trigger contentHeroImage once
@@ -95,75 +122,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     //     .addIndicators()
     //     .addTo(controller);
 
-    var controller = new ScrollMagic.Controller();
-    // Set Scene
-    var tlsetScene = new TimelineMax();
-    tlsetScene.set(".contentHeroImage", { rotation: 20, yPercent: "90%" });
-    var containerSetScene = new ScrollMagic.Scene({
-            triggerElement: '.contentHeroImageContainer',
-            triggerHook: 0.95,
-            reverse: true
-        })
-        .setTween(tlsetScene)
-        // .addIndicators()
-        .addTo(controller);
-
-    // Scene Action
-    var tlSceneAction = new TimelineMax();
-    tlSceneAction.to(".contentHeroImage", 1, { rotation: 0, yPercent: "0%" });
-    var containerSceneAction = new ScrollMagic.Scene({
-            triggerElement: '.contentHeroImageContainer',
-            triggerHook: 0.7,
-            reverse: true
-        })
-        .setTween(tlSceneAction)
-        // .addIndicators()
-        .addTo(controller);
 
 
-    // Scene Action2
-    var tlSceneAction2 = new TimelineMax();
-    tlSceneAction2.to("#infoSlideBackgroundimage", 1.5, {
-        duration: 2.5,
-        ease: Power1.easeOut,
-        scale: 1.1
-    });
-    tlSceneAction2.to("#infoSlideBackgroundimage", 1.5, {
-        duration: 2.5,
-        ease: Power1.easeOut,
-        scale: 1.3
-    });
-    var slideHeroImageScene = new ScrollMagic.Scene({
-            triggerElement: ".contentHeroImageContainer",
-            duration: "70%",
-            triggerHook: 0.80
-        })
-        // .addIndicators()
-        .setTween(tlSceneAction2)
-        .addTo(controller);
 
-    document.getElementById("gallery").addEventListener("click", function() {
-        // var scene = document.getElementById('js-scene');
-        // parallax = new Parallax(scene);
-        parallax.destroy();
-        parallax = null;
 
-        var tl0 = new TimelineMax();
-        $(".heroImageAnim").removeClass("heroImageAnim")
-            // $(".imageWrapper").removeClass("imageWrapper")
-            // tl0.set('.imageWrapper', {
-            //     // position: "relative",
-            // })
-        tl0.to('.imageWrapper', 1, {
-            duration: 1,
-            ease: Expo.easeInOut,
-            left: "0px",
-            top: "0px",
-            // height: "auto",
-            padding: "1%",
-            // position: "",
-        }, "-=1")
-    });
+
+
     $('.Backgroundimage').each(function() {
         // console.log(this);
         $('#' + this.id).on('click', function() {
