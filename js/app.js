@@ -12,10 +12,23 @@ var imgData = {
 var wrapperId, swiper_slider_id;
 // Move previous three slides and the next three slides before animating the clicked Image
 var firstThree, nextThree;
-// var TimelineMax = new TimelineMax();
+var testArr = [
+    [],
+    [],
+    []
+];
+// Above is 2d Array 
+
 // store.commit('addToArray', 10)
 // console.log(store.commit('addToArray', 10))
 document.addEventListener("DOMContentLoaded", function(event) {
+    var global_TimelineMax = new TimelineMax();
+    var gallerySceneAction = new ScrollMagic.Scene({
+        triggerElement: '#gallery',
+        triggerHook: 0.6,
+        reverse: true
+    })
+
     // var rellax = new Rellax('.rellax');
     // var image = document.getElementsByClassName('thumbnail');
     // new simpleParallax(image);

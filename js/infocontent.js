@@ -22,9 +22,8 @@ var myTask = Vue.component('infocontent-template', {
             projectTitle: this.project,
             count: 0,
             galleryAnimated: true,
-            tl0: new TimelineMax()
-                // imgData: store.getters.getSwiperAnimData
-                // required: true
+            // imgData: store.getters.getSwiperAnimData
+            // required: true
         } //Notice: in components data should return an object. For example "return { someProp: 1 }"
         // } else {
         // return {};
@@ -165,36 +164,63 @@ var myTask = Vue.component('infocontent-template', {
                 "opacity": 1
             })
             imgData = {
-                "imgHeight": "",
-                "imgWidth": "",
-                "imgTop": "",
-                "imgLeft": "",
-                "imgBgPosition": "",
-                "imgScale": ""
-            }
-
+                    "imgHeight": "",
+                    "imgWidth": "",
+                    "imgTop": "",
+                    "imgLeft": "",
+                    "imgBgPosition": "",
+                    "imgScale": ""
+                }
+                // global_TimelineMax.clear();
+            global_TimelineMax.set('.imageWrapper', { clearProps: "left,top,height,padding" });
+            var previousCss = $(".slideContainer").attr("style");
+            $(".slideContainer").css({
+                // position: 'absolute', // Optional if #myDiv is already absolute
+                visibility: 'hidden',
+                display: 'block'
+            });
+            optionHeight = $("#gallery").height();
+            // console.log(optionHeight, $("#js-scene").height())
+            // Setting Parallax for Gallery Section
+            var scene = document.getElementById('js-scene');
+            parallax = new Parallax(scene, {
+                selector: '.layer',
+                hoverOnly: true
+            });
+            var tempHeight = $("#gallery").outerHeight();
+            $("#gallery").css({ "height": tempHeight * 2 + "px" })
+            $("#js-scene").css({ "height": tempHeight * 2 + "px" })
+            $("#gallery").css({ "margin-top": tempHeight / 7 + "px" })
+            $("#gallery").css({ "margin-bottom": tempHeight / 7 + "px" })
+            $(".slideContainer").attr("style", previousCss ? previousCss : "");
             // })
         },
         galleryInit: function() {
+            // var scene = document.getElementById('js-scene');
+            // parallax = new Parallax(scene);
             document.getElementById("gallery").addEventListener("click", function() {
                 // var scene = document.getElementById('js-scene');
                 // parallax = new Parallax(scene);
                 parallax.destroy();
                 parallax = null;
                 this.galleryAnimated = false;
-                var tl0 = new TimelineMax();
+                global_TimelineMax = new TimelineMax();
                 $(".heroImageAnim").removeClass("heroImageAnim")
 
-                tl0.to('.imageWrapper', 1, {
+                global_TimelineMax.to('.imageWrapper', 1, {
                     duration: 1,
                     ease: Expo.easeInOut,
                     left: "0px",
                     top: "0px",
                     height: "auto",
-                    padding: "1%",
-                    // position: "",
+                    padding: "1%"
+                        // position: "",
                 }, "-=1");
-                tl0.clear(); //or .kill()
+                for (i = 0; i < testArr.length; i++) {
+                    for (j = 0; j < testArr[i].length; j++) {
+                        testArr[i][j].reverse(false);
+                    }
+                }
             });
         },
         smgInitContentHeroImage: function() {
@@ -237,21 +263,23 @@ var myTask = Vue.component('infocontent-template', {
 
             for (i = 0; i < galleryImages.length; i++) {
                 console.log(galleryImages[i]);
-                var tlSceneAction = new TimelineMax();
+                global_TimelineMax = new TimelineMax();
 
                 if (i % 2 == 0) {
-                    tlsetScene.set(galleryImages[i], { rotation: 20, yPercent: "200%" });
+                    global_TimelineMax.set(galleryImages[i], { rotation: 20, yPercent: "200%" });
                 } else {
-                    tlsetScene.set(galleryImages[i], { rotation: -20, yPercent: "180%" });
+                    global_TimelineMax.set(galleryImages[i], { rotation: -20, yPercent: "180%" });
                 }
-                var containerSetScene = new ScrollMagic.Scene({
+                gallerySceneAction = new ScrollMagic.Scene({
                         triggerElement: '.contentHeroImageContainer',
                         triggerHook: 0.95,
                         reverse: true
                     })
-                    .setTween(tlsetScene)
+                    .setTween(global_TimelineMax)
                     // .addIndicators()
                     .addTo(controller);
+                testArr[0].push(gallerySceneAction);
+
             }
 
 
@@ -259,21 +287,23 @@ var myTask = Vue.component('infocontent-template', {
             for (i = 0; i < galleryImages.length; i++) {
                 if (i % 2 == 0) {
                     // Delay
-                    var tlSceneAction = new TimelineMax({ delay: i - i * 0.9 + 0.055 });
+                    global_TimelineMax = new TimelineMax({ delay: i - i * 0.9 + 0.055 });
                 } else {
-                    var tlSceneAction = new TimelineMax();
+                    global_TimelineMax = new TimelineMax();
                 }
                 // var reverse = (this.galleryAnimated) ? false : true;
                 // console.log(reverse)
-                tlSceneAction.to(galleryImages[i], 1.5, { rotation: 0, yPercent: "0%" });
-                var containerSceneAction = new ScrollMagic.Scene({
+                global_TimelineMax.to(galleryImages[i], 1.5, { rotation: 0, yPercent: "0%" });
+                gallerySceneAction = new ScrollMagic.Scene({
                         triggerElement: '#gallery',
                         triggerHook: 0.6,
                         reverse: this.galleryAnimated
                     })
-                    .setTween(tlSceneAction)
+                    .setTween(global_TimelineMax)
                     // .addIndicators()
                     .addTo(controller);
+                testArr[1].push(gallerySceneAction);
+
 
             }
         },
