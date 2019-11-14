@@ -322,16 +322,17 @@ var myTask = Vue.component('infocontent-template', {
         carouselInit: function(event) {
             var controller = new ScrollMagic.Controller();
             // Set Scene
+            // $(".carousel-inner").addClass("m-auto")
+
             var tlsetScene = new TimelineMax();
-            tlsetScene.set(".carousel-inner", { width: "10%" });
-            $(".carousel-inner").addClass("m-auto")
+            tlsetScene.set("#carouselExampleControls", { width: "30%" });
             var containerSetScene = new ScrollMagic.Scene({
-                    triggerElement: '.carousel-container',
+                    triggerElement: '#carouselExampleControls',
                     triggerHook: 0.75,
                     reverse: true
                 })
                 .setTween(tlsetScene)
-                .addIndicators()
+                // .addIndicators()
                 .addTo(controller);
 
 
@@ -340,20 +341,20 @@ var myTask = Vue.component('infocontent-template', {
             //     scale: 1.1,
             //     yPercent: "10%"
             // });
-            tlSceneAction2.to(".carousel-container", .3, {
+            tlSceneAction2.to("#carouselExampleControls", .3, {
                 width: "50%",
             });
-            tlSceneAction2.to(".carousel-container", .3, {
+            tlSceneAction2.to("#carouselExampleControls", .3, {
                 width: "100%",
             });
             var scene0 = new ScrollMagic.Scene({
-                    triggerElement: ".carousel-container",
-                    triggerHook: ".3",
+                    triggerElement: "#carouselExampleControls",
+                    triggerHook: ".1",
                     duration: "100%"
                 })
-                .setPin(".carousel-inner")
+                .setPin("#carouselExampleControls")
                 .setTween(tlSceneAction2)
-                .addIndicators({ name: "Carousel pin Trigger" })
+                // .addIndicators({ name: "Carousel pin Trigger" })
                 .addTo(controller);
 
 
