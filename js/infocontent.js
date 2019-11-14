@@ -321,14 +321,31 @@ var myTask = Vue.component('infocontent-template', {
         },
         carouselInit: function(event) {
             var controller = new ScrollMagic.Controller();
+
+            var previousCss = $(".slideContainer").attr("style");
+            $(".slideContainer").css({
+                // position: 'absolute', // Optional if #myDiv is already absolute
+                visibility: 'hidden',
+                display: 'block'
+            });
+            var tempCarouselHeight;
+            console.log($(".carousel-container").outerHeight())
+            console.log($(".carousel-inner").outerHeight())
+            console.log($(".carousel-inner").position().left)
+            console.log($(".carousel-inner").position().top);
+            tempCarouselHeight = $(".carousel-inner").outerHeight();
+            $(".slideContainer").attr("style", previousCss ? previousCss : "");
+
+
+
             // Set Scene
-            // $(".carousel-inner").addClass("m-auto")
+            $(".carousel-inner").addClass("m-auto")
 
             var tlsetScene = new TimelineMax();
-            tlsetScene.set("#carouselExampleControls", { width: "30%" });
+            tlsetScene.set("#carouselExampleControls", { scale: "0.45" });
             var containerSetScene = new ScrollMagic.Scene({
-                    triggerElement: '#carouselExampleControls',
-                    triggerHook: 0.75,
+                    triggerElement: '.carousel-container',
+                    triggerHook: 0.90,
                     reverse: true
                 })
                 .setTween(tlsetScene)
@@ -341,15 +358,17 @@ var myTask = Vue.component('infocontent-template', {
             //     scale: 1.1,
             //     yPercent: "10%"
             // });
-            tlSceneAction2.to("#carouselExampleControls", .3, {
-                width: "50%",
+            tlSceneAction2.to("#carouselExampleControls", 1, {
+                // ease: Expo.easeInOut,
+                // duration: 1,
+                scale: 1,
             });
-            tlSceneAction2.to("#carouselExampleControls", .3, {
-                width: "100%",
-            });
+            // tlSceneAction2.to("#carouselExampleControls", .3, {
+            //     width: "100%",
+            // });
             var scene0 = new ScrollMagic.Scene({
                     triggerElement: "#carouselExampleControls",
-                    triggerHook: ".1",
+                    triggerHook: "-1",
                     duration: "100%"
                 })
                 .setPin("#carouselExampleControls")

@@ -495,3 +495,7 @@
      -webkit-transform: translateY(-50%);
      transform: translateY(-50%);
  } */
+ 
+ #carouselExampleControls {
+     /* transition: all .1s ease; */
+ }
