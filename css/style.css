@@ -173,32 +173,6 @@
     } */
  }
  
- *,
- *::before,
- *::after {
-     box-sizing: border-box;
- }
- 
- body {
-     color: #FFF;
-     font-family: 'Montserrat', 'Roboto', 'Droid Sans', 'Helvetica Neue', sans-serif;
- }
- 
- ul,
- ol {
-     list-style-type: none;
-     padding: 0;
-     margin: 0;
- }
- 
- a {
-     text-decoration: none;
- }
- 
- p {
-     margin: 1rem 0;
- }
- 
  .header {
      font-size: .75rem;
      font-weight: 200;
@@ -208,8 +182,6 @@
  }
  
  .main {
-     /* height: 100vh; */
-     padding: 2rem;
      overflow-x: hidden;
      overflow-y: auto;
      -webkit-perspective: 1px;
@@ -218,9 +190,6 @@
  
  .section {
      min-height: 500px;
-     min-height: calc(100vh - 4rem - 4rem);
-     padding-top: 300px;
-     margin-bottom: 250px;
      position: relative;
      -webkit-transform-style: preserve-3d;
      transform-style: preserve-3d;
@@ -509,3 +478,20 @@
          transform: rotateY(0deg);
      }
  }
+ /* Reveal cararousel */
+ /* .carousel-control-next {
+     left: 60px !important;
+ }
+ 
+ .carousel-left-controller,
+ .carousel-right-controller {
+     display: flex;
+     align-items: center;
+     position: absolute;
+     padding: 0 2rem;
+     top: 0;
+     left: 0;
+     right: 0;
+     -webkit-transform: translateY(-50%);
+     transform: translateY(-50%);
+ } */

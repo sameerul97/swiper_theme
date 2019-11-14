@@ -54,8 +54,9 @@ var myTask = Vue.component('infocontent-template', {
             this.projectTitle = store.getters.getInfoData(this.project);
             this.galleryInit();
             this.smgInitContentHeroImage();
-            this.cursorInit();
+            // this.cursorInit();
             this.smgInitGallery();
+            this.carouselInit();
             // Initiate gallery once the project is loaded
             console.log($("#gallery").outerHeight())
 
@@ -296,7 +297,7 @@ var myTask = Vue.component('infocontent-template', {
                 global_TimelineMax.to(galleryImages[i], 1.5, { rotation: 0, yPercent: "0%" });
                 gallerySceneAction = new ScrollMagic.Scene({
                         triggerElement: '#gallery',
-                        triggerHook: 0.6,
+                        triggerHook: 0.4,
                         reverse: this.galleryAnimated
                     })
                     .setTween(global_TimelineMax)
@@ -317,7 +318,100 @@ var myTask = Vue.component('infocontent-template', {
                 var newposY = y;
                 $(".myDiv").css("transform", "translate3d(" + newposX + "px," + newposY + "px,0px)");
             });
-        }
+        },
+        carouselInit: function(event) {
+            var controller = new ScrollMagic.Controller();
+            // Set Scene
+            var tlsetScene = new TimelineMax();
+            tlsetScene.set(".carousel-inner", { width: "10%" });
+            $(".carousel-inner").addClass("m-auto")
+            var containerSetScene = new ScrollMagic.Scene({
+                    triggerElement: '.carousel-container',
+                    triggerHook: 0.75,
+                    reverse: true
+                })
+                .setTween(tlsetScene)
+                .addIndicators()
+                .addTo(controller);
+
+
+            var tlSceneAction2 = new TimelineMax();
+            // tlSceneAction2.to("#infoSlideBackgroundimage", .3, {
+            //     scale: 1.1,
+            //     yPercent: "10%"
+            // });
+            tlSceneAction2.to(".carousel-container", .3, {
+                width: "50%",
+            });
+            tlSceneAction2.to(".carousel-container", .3, {
+                width: "100%",
+            });
+            var scene0 = new ScrollMagic.Scene({
+                    triggerElement: ".carousel-container",
+                    triggerHook: ".3",
+                    duration: "100%"
+                })
+                .setPin(".carousel-inner")
+                .setTween(tlSceneAction2)
+                .addIndicators({ name: "Carousel pin Trigger" })
+                .addTo(controller);
+
+
+
+
+
+
+
+            // $("#infoSlideBackgroundimage").css({ "transition": "all 0.3s ease 0s" })
+            // var tlSceneAction2 = new TimelineMax();
+            // tlSceneAction2.to("#infoSlideBackgroundimage", .3, {
+            //     scale: 1.1,
+            //     yPercent: "10%"
+            // });
+            // tlSceneAction2.to("#infoSlideBackgroundimage", .3, {
+            //     scale: 1.2,
+            //     yPercent: "15%"
+            // });
+            // tlSceneAction2.to("#infoSlideBackgroundimage", .3, {
+            //     scale: 1.3,
+            //     yPercent: "20%"
+            // });
+            // var slideHeroImageScene = new ScrollMagic.Scene({
+            //         triggerElement: ".contentHeroImageContainer",
+            //         duration: "70%",
+            //         triggerHook: 0.80
+            //     })
+            //     // .addIndicators()
+            //     .setTween(tlSceneAction2)
+            //     .addTo(controller);
+
+
+            // var controller = new ScrollMagic.Controller();
+            // // Set Scene
+            // var tlsetScene = new TimelineMax();
+            // tlsetScene.set(".contentHeroImage", { rotation: 20, yPercent: "90%" });
+            // var containerSetScene = new ScrollMagic.Scene({
+            //         triggerElement: '.contentHeroImageContainer',
+            //         triggerHook: 0.95,
+            //         reverse: true
+            //     })
+            //     .setTween(tlsetScene)
+            //     // .addIndicators()
+            //     .addTo(controller);
+
+            // // Scene Action
+            // var tlSceneAction = new TimelineMax();
+            // tlSceneAction.to(".contentHeroImage", 1, { rotation: 0, yPercent: "0%" });
+            // var containerSceneAction = new ScrollMagic.Scene({
+            //         triggerElement: '.contentHeroImageContainer',
+            //         triggerHook: 0.7,
+            //         reverse: true
+            //     })
+            //     .setTween(tlSceneAction)
+            //     // .addIndicators()
+            //     .addTo(controller);
+
+        },
 
     }
     // props: ['task']
