@@ -339,10 +339,12 @@ var myTask = Vue.component('infocontent-template', {
                     .addTo(controller);
                 var tlSceneAction2 = new TimelineMax();
                 tlSceneAction2.to("#carousel1", .5, {
+                    ease: Linear.easeIn,
                     scale: 1,
                     opacity: 1,
                 });
                 tlSceneAction2.to(".carousel-inner", .5, {
+                    ease: Linear.easeIn,
                     boxShadow: "0 40px 40px -20px rgba(56, 54, 54, 0.85)"
                 }, "-=.5");
 
@@ -362,13 +364,13 @@ var myTask = Vue.component('infocontent-template', {
 
                 tlSceneAction2.to(".div-left", 2.5, {
                     duration: 2.5,
-                    ease: Expo.easeInOut,
+                    ease: Linear.easeIn,
                     x: "-100%"
                         // opacity: 1
                 });
                 tlSceneAction2.to(".div-right", 2.5, {
                     duration: 2.5,
-                    ease: Expo.easeInOut,
+                    ease: Linear.easeIn,
                     x: "100%"
                         // opacity: 1
                 }, "-=2.5");
