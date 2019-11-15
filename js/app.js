@@ -17,6 +17,7 @@ var testArr = [
     [],
     []
 ];
+var global_brow_height, global_brow_width;
 // Above is 2d Array 
 
 // store.commit('addToArray', 10)
@@ -28,7 +29,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         triggerHook: 0.6,
         reverse: true
     })
-
+    global_brow_height = window.innerHeight,
+        global_brow_width = window.innerWidth;
     // var rellax = new Rellax('.rellax');
     // var image = document.getElementsByClassName('thumbnail');
     // new simpleParallax(image);
@@ -37,8 +39,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $img = $("body").find('.hero .img-bg-props');
     console.log(store.getters.getSwiperInitialData);
 
-
-    // console.log(optionHeight, parallax)
 
     // Gallery init
     console.log($("#gallery").outerHeight())
@@ -49,18 +49,32 @@ document.addEventListener("DOMContentLoaded", function(event) {
         display: 'block'
     });
     optionHeight = $("#gallery").height();
-    // console.log(optionHeight, $("#js-scene").height())
-    // Setting Parallax for Gallery Section
-    var scene = document.getElementById('js-scene');
-    parallax = new Parallax(scene, {
-        selector: '.layer',
-        hoverOnly: true
-    });
-    var tempHeight = $("#gallery").outerHeight();
-    $("#gallery").css({ "height": tempHeight * 2 + "px" })
-    $("#js-scene").css({ "height": tempHeight * 2 + "px" })
-    $("#gallery").css({ "margin-top": tempHeight / 7 + "px" })
-    $("#gallery").css({ "margin-bottom": tempHeight / 7 + "px" })
+    if (global_brow_width > 1200) {
+        var scene = document.getElementById('js-scene');
+        parallax = new Parallax(scene, {
+            selector: '.layer',
+            hoverOnly: true
+        });
+        // console.log(optionHeight, $("#js-scene").height())
+        // Setting Parallax for Gallery Section
+
+        var tempHeight = $("#gallery").outerHeight();
+        $("#gallery").css({ "height": tempHeight * 2 + "px" })
+        $("#js-scene").css({ "height": tempHeight * 2 + "px" })
+        $("#gallery").css({ "margin-top": tempHeight / 7 + "px" })
+        $("#gallery").css({ "margin-bottom": tempHeight / 7 + "px" })
+    } else {
+        // console.log(optionHeight, $("#js-scene").height())
+        // Setting Parallax for Gallery Section
+
+        var tempHeight = $("#gallery").outerHeight();
+        $("#gallery").css({ "height": "auto" })
+        $("#js-scene").css({ "height": "auto" })
+            // $("#gallery").css({ "margin-top": tempHeight / 7 + "px" })
+            // $("#gallery").css({ "margin-bottom": tempHeight / 7 + "px" })
+    }
+
+
     $(".slideContainer").attr("style", previousCss ? previousCss : "");
 
 

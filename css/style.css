@@ -504,7 +504,9 @@
  .carousel-inner {
      /* transition: all .1s ease; */
      border-radius: 30px;
-     top: 50px;
+     margin-top: 20px;
+     margin-bottom: 20px;
+     /* box-shadow: 0 32px 40px -20px rgba(69, 44, 44, 0.85); */
  }
  
  .div-left {
@@ -523,3 +525,28 @@
      height: 100%;
      background: #eeeeee;
  }
+ 
+ @media only screen and (max-width: 1200px) {
+     .imageWrapper:nth-child(1),
+     .imageWrapper:nth-child(2),
+     .imageWrapper:nth-child(3),
+     .imageWrapper:nth-child(4),
+     .imageWrapper:nth-child(5),
+     .imageWrapper:nth-child(6) {
+         top: 0px;
+         left: 0px;
+         top: 0px;
+         left: 0px;
+         /* width: 200px; */
+         height: auto;
+     }
+     .carousel-inner {
+         top: 0px;
+     }
+     .div-left,
+     .div-right {
+         display: none;
+     }
+ }
+ 
+ @media only screen and (max-width: 992px) {}
