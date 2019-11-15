@@ -322,30 +322,30 @@ var myTask = Vue.component('infocontent-template', {
         carouselInit: function(event) {
             var controller = new ScrollMagic.Controller();
 
-            var previousCss = $(".slideContainer").attr("style");
-            $(".slideContainer").css({
-                // position: 'absolute', // Optional if #myDiv is already absolute
-                visibility: 'hidden',
-                display: 'block'
-            });
-            var tempCarouselHeight;
-            console.log($(".carousel-container").outerHeight())
-            console.log($(".carousel-inner").outerHeight())
-            console.log($(".carousel-inner").position().left)
-            console.log($(".carousel-inner").position().top);
-            tempCarouselHeight = $(".carousel-inner").outerHeight();
-            $(".slideContainer").attr("style", previousCss ? previousCss : "");
+            // var previousCss = $(".slideContainer").attr("style");
+            // $(".slideContainer").css({
+            //     // position: 'absolute', // Optional if #myDiv is already absolute
+            //     visibility: 'hidden',
+            //     display: 'block'
+            // });
+            // var tempCarouselHeight;
+            // console.log($(".carousel-container").outerHeight())
+            // console.log($(".carousel-inner").outerHeight())
+            // console.log($(".carousel-inner").position().left)
+            // console.log($(".carousel-inner").position().top);
+            // tempCarouselHeight = $(".carousel-inner").outerHeight();
+            // $(".slideContainer").attr("style", previousCss ? previousCss : "");
 
 
 
             // Set Scene
-            $(".carousel-inner").addClass("m-auto")
+            $(".carousel-inner1").addClass("m-auto")
 
             var tlsetScene = new TimelineMax();
-            tlsetScene.set("#carouselExampleControls", { scale: "0.45" });
+            tlsetScene.set("#carousel1", { scale: "0.45", opacity: 0.3 });
             var containerSetScene = new ScrollMagic.Scene({
-                    triggerElement: '.carousel-container',
-                    triggerHook: 0.90,
+                    triggerElement: '.carousel-container1',
+                    triggerHook: 0.99,
                     reverse: true
                 })
                 .setTween(tlsetScene)
@@ -354,30 +354,60 @@ var myTask = Vue.component('infocontent-template', {
 
 
             var tlSceneAction2 = new TimelineMax();
-            // tlSceneAction2.to("#infoSlideBackgroundimage", .3, {
-            //     scale: 1.1,
-            //     yPercent: "10%"
-            // });
-            tlSceneAction2.to("#carouselExampleControls", 1, {
-                // ease: Expo.easeInOut,
-                // duration: 1,
+
+            tlSceneAction2.to("#carousel1", .5, {
                 scale: 1,
+                opacity: 1
             });
-            // tlSceneAction2.to("#carouselExampleControls", .3, {
-            //     width: "100%",
-            // });
             var scene0 = new ScrollMagic.Scene({
-                    triggerElement: "#carouselExampleControls",
+                    triggerElement: "#carousel1",
                     triggerHook: "-1",
                     duration: "100%"
                 })
-                .setPin("#carouselExampleControls")
+                .setPin("#carousel1")
                 .setTween(tlSceneAction2)
                 // .addIndicators({ name: "Carousel pin Trigger" })
                 .addTo(controller);
 
 
+            // Set Scene for second carousel
+            $(".carousel-inner2").addClass("m-auto")
 
+            // var tlsetScene = new TimelineMax();
+            // tlsetScene.set("#carousel2", { scale: "0.45", opacity: 0.3 });
+            // var containerSetScene = new ScrollMagic.Scene({
+            //         triggerElement: '.carousel-container2',
+            //         triggerHook: 0.99,
+            //         reverse: true
+            //     })
+            //     .setTween(tlsetScene)
+            //     // .addIndicators()
+            //     .addTo(controller);
+
+
+            var tlSceneAction2 = new TimelineMax();
+
+            tlSceneAction2.to(".div-left", .5, {
+                duration: .5,
+                ease: Expo.easeInOut,
+                x: "-100%"
+                    // opacity: 1
+            });
+            tlSceneAction2.to(".div-right", .5, {
+                duration: .5,
+                ease: Expo.easeInOut,
+                x: "100%"
+                    // opacity: 1
+            }, "-=.5");
+            var scene0 = new ScrollMagic.Scene({
+                    triggerElement: "#carousel2",
+                    triggerHook: "-1",
+                    duration: "100%"
+                })
+                .setPin("#carousel2")
+                .setTween(tlSceneAction2)
+                // .addIndicators({ name: "Carousel pin Trigger" })
+                .addTo(controller);
 
 
 

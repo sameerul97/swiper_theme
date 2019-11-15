@@ -496,6 +496,30 @@
      transform: translateY(-50%);
  } */
  
- #carouselExampleControls {
+ #carousel2 {
      /* transition: all .1s ease; */
+     /* transform: translate(-50%, -50%) */
+ }
+ 
+ .carousel-inner {
+     /* transition: all .1s ease; */
+     border-radius: 30px;
+     top: 50px;
+ }
+ 
+ .div-left {
+     position: absolute;
+     top: 0;
+     width: 50%;
+     height: 100%;
+     background: #eeeeee;
+ }
+ 
+ .div-right {
+     position: absolute;
+     top: 0;
+     left: 50%;
+     width: 50%;
+     height: 100%;
+     background: #eeeeee;
  }
