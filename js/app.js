@@ -31,10 +31,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
     })
     global_brow_height = window.innerHeight,
         global_brow_width = window.innerWidth;
-    // var rellax = new Rellax('.rellax');
-    // var image = document.getElementsByClassName('thumbnail');
-    // new simpleParallax(image);
-    // Your code to run since DOM is loaded and ready
+
+
+    // Vibrant JS
+    var v = new Vibrant();
+    console.log(Vibrant.from("/swiper_theme/img/nike2.jpg").getPalette(function(err, palette) {
+            console.log(palette)
+        }))
+        // var rellax = new Rellax('.rellax');
+        // var image = document.getElementsByClassName('thumbnail');
+        // new simpleParallax(image);
+        // Your code to run since DOM is loaded and ready
     var image = document.getElementsByClassName('bg1');
     $img = $("body").find('.hero .img-bg-props');
     console.log(store.getters.getSwiperInitialData);

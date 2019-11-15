@@ -500,6 +500,19 @@
      /* transition: all .1s ease; */
      /* transform: translate(-50%, -50%) */
  }
+ /* .carousel-container1 {
+     height: 100vh;
+     background: darkblue;
+ }
+ 
+ .carousel_absolute_col {
+     position: absolute;
+     top: 20%;
+     top: 50%;
+     left: 50%;
+     margin-right: -50%;
+     transform: translate(-50%, -50%);
+ } */
  
  .carousel-inner {
      /* transition: all .1s ease; */
