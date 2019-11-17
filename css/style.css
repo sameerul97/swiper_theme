@@ -558,6 +558,7 @@
  .gridA {
      background-color: #880e69;
      color: white;
+     background: linear-gradient( #880e69, #880e69) no-repeat 0px 0px;
  }
  
  .gridB {
