@@ -22,8 +22,9 @@ var myTask = Vue.component('infocontent-template', {
             projectTitle: this.project,
             count: 0,
             galleryAnimated: true,
-            // imgData: store.getters.getSwiperAnimData
-            // required: true
+            initCarouselOnce: false
+                // imgData: store.getters.getSwiperAnimData
+                // required: true
         } //Notice: in components data should return an object. For example "return { someProp: 1 }"
         // } else {
         // return {};
@@ -104,7 +105,7 @@ var myTask = Vue.component('infocontent-template', {
             var firstThree = imageData.firstThree;
             var nextThree = imageData.nextThree;
             $("#infoSlideBackgroundimage").css({ "transition": "" })
-
+            initOnce = false;
             console.log(imgData, selectedItemId, firstThree, nextThree)
                 // Get info section back to top.
             var elmnt = document.getElementById("infoSlideBackgroundimage");
@@ -188,11 +189,11 @@ var myTask = Vue.component('infocontent-template', {
                 selector: '.layer',
                 hoverOnly: true
             });
-            var tempHeight = $("#gallery").outerHeight();
-            $("#gallery").css({ "height": tempHeight * 2 + "px" })
-            $("#js-scene").css({ "height": tempHeight * 2 + "px" })
-            $("#gallery").css({ "margin-top": tempHeight / 7 + "px" })
-            $("#gallery").css({ "margin-bottom": tempHeight / 7 + "px" })
+            // var tempHeight = $("#gallery").outerHeight();
+            // $("#gallery").css({ "height": tempHeight * 2 + "px" })
+            // $("#js-scene").css({ "height": tempHeight * 2 + "px" })
+            // $("#gallery").css({ "margin-top": tempHeight / 7 + "px" })
+            // $("#gallery").css({ "margin-bottom": tempHeight / 7 + "px" })
             $(".slideContainer").attr("style", previousCss ? previousCss : "");
             // })
         },
@@ -298,7 +299,7 @@ var myTask = Vue.component('infocontent-template', {
                 global_TimelineMax.to(galleryImages[i], 1.5, { rotation: 0, yPercent: "0%" });
                 gallerySceneAction = new ScrollMagic.Scene({
                         triggerElement: '#gallery',
-                        triggerHook: 0.4,
+                        triggerHook: 0.6,
                         reverse: this.galleryAnimated
                     })
                     .setTween(global_TimelineMax)
@@ -322,7 +323,10 @@ var myTask = Vue.component('infocontent-template', {
             });
         },
         carouselInit: function(event) {
-            if (global_brow_width > 992) {
+            if (global_brow_width > 992 && !this.initCarouselOnce) {
+                console.log("RUnning carousel  Init")
+                this.initCarouselOnce = true;
+                // need this function to take place only once
                 var controller = new ScrollMagic.Controller();
 
 

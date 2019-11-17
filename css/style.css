@@ -555,6 +555,41 @@
      transition: transform 0.3s ease 0s;
  }
  
+ .gridA {
+     background-color: #880e69;
+     color: white;
+ }
+ 
+ .gridB {
+     background-color: #1a5fa0!important;
+     color: white;
+ }
+ 
+ .textId {
+     font-family: 'Roboto Mono', monospace;
+ }
+ 
+ .text {
+     font-family: 'Roboto Mono', monospace;
+ }
+ 
+ .outline {
+     -webkit-text-stroke-width: calc(1px + 0 * ((100vw - 320px) / 1120));
+     -webkit-text-stroke-color: #fff;
+     color: transparent;
+     font-weight: bolder;
+     font-size: 2rem;
+ }
+ 
+ .subtitle {
+     font-weight: bold;
+     font-size: 1.75rem;
+ }
+ 
+ .short_desc {
+     font-size: 1.1rem;
+ }
+ 
  @media only screen and (max-width: 1200px) {
      .imageWrapper:nth-child(1),
      .imageWrapper:nth-child(2),

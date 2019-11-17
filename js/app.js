@@ -19,6 +19,8 @@ var testArr = [
 ];
 var global_brow_height, global_brow_width;
 // Above is 2d Array 
+var initOnce;
+// Above is for hero image animating
 
 // store.commit('addToArray', 10)
 // console.log(store.commit('addToArray', 10))
@@ -56,7 +58,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
         display: 'block'
     });
     optionHeight = $("#gallery").height();
+    if (global_brow_width >= 768) {
+        // Setting Grid content
+        var marginTop = $(".gridPartB").innerHeight() - $(".gridPartA").innerHeight();
+        $(".pushUp").css({
+            "margin-top": "-" + marginTop + "px"
+        })
+    }
     if (global_brow_width > 1200) {
+
         var scene = document.getElementById('js-scene');
         parallax = new Parallax(scene, {
             selector: '.layer',
@@ -65,11 +75,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
         // console.log(optionHeight, $("#js-scene").height())
         // Setting Parallax for Gallery Section
 
-        var tempHeight = $("#gallery").outerHeight();
-        $("#gallery").css({ "height": tempHeight * 2 + "px" })
-        $("#js-scene").css({ "height": tempHeight * 2 + "px" })
-        $("#gallery").css({ "margin-top": tempHeight / 7 + "px" })
-        $("#gallery").css({ "margin-bottom": tempHeight / 7 + "px" })
+        // var tempHeight = $("#gallery").outerHeight();
+        // $("#gallery").css({ "height": tempHeight * 2 + "px" })
+        // $("#js-scene").css({ "height": tempHeight * 2 + "px" })
+        // $("#gallery").css({ "margin-top": tempHeight / 7 + "px" })
+        // $("#gallery").css({ "margin-bottom": tempHeight / 7 + "px" })
     } else {
         // console.log(optionHeight, $("#js-scene").height())
         // Setting Parallax for Gallery Section
@@ -86,13 +96,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
     // Animating heroSliderImage
-    var initOnce = false;
+    initOnce = false;
     var pixelToInit = -(window.outerWidth / 9);
     var controller = new ScrollMagic.Controller();
     // ####### BUGGY causing performance issue and glitch whilst clicking the swiper
     // Solution: Initiate this function once the slide is loaded and one 9th is scrolled to top. 
     $(".infoSection").on('scroll', function(e) {
         if ($(document.getElementById("infoSlideBackgroundimage")).offset().top <= pixelToInit && !initOnce) {
+
             initOnce = true;
             scrollMagicAndGsapInit2();
         }
