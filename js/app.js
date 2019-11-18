@@ -22,9 +22,12 @@ var global_brow_height, global_brow_width;
 var initOnce;
 // Above is for hero image animating
 
-// store.commit('addToArray', 10)
-// console.log(store.commit('addToArray', 10))
+
+
+// Resize listerner 
 document.addEventListener("DOMContentLoaded", function(event) {
+
+    var previousCss;
     var global_TimelineMax = new TimelineMax();
     var gallerySceneAction = new ScrollMagic.Scene({
         triggerElement: '#gallery',
@@ -34,6 +37,46 @@ document.addEventListener("DOMContentLoaded", function(event) {
     global_brow_height = window.innerHeight,
         global_brow_width = window.innerWidth;
 
+
+
+    function resizeContents() {
+        if (window.innerWidth >= 992) {
+            // Setting Grid content
+            var marginTop = $(".gridC").innerHeight() - $(".gridA").innerHeight();
+            $(".pushUp").css({
+                "margin-top": "-" + marginTop + "px"
+            })
+        }
+        // else if (global_brow_width > 1200) {
+
+        // var scene = document.getElementById('js-scene');
+        // parallax = new Parallax(scene, {
+        //     selector: '.layer',
+        //     hoverOnly: true
+        // });
+        // console.log(optionHeight, $("#js-scene").height())
+        // Setting Parallax for Gallery Section
+
+        // var tempHeight = $("#gallery").outerHeight();
+        // $("#gallery").css({ "height": tempHeight * 2 + "px" })
+        // $("#js-scene").css({ "height": tempHeight * 2 + "px" })
+        // $("#gallery").css({ "margin-top": tempHeight / 7 + "px" })
+        // $("#gallery").css({ "margin-bottom": tempHeight / 7 + "px" })
+        // } 
+        else {
+            // console.log(optionHeight, $("#js-scene").height())
+            // Setting Parallax for Gallery Section
+            $(".pushUp").css({
+                    "margin-top": "0" + "px"
+                })
+                // var tempHeight = $("#gallery").outerHeight();
+                // $("#gallery").css({ "height": "auto" })
+                // $("#js-scene").css({ "height": "auto" })
+                // $("#gallery").css({ "margin-top": tempHeight / 7 + "px" })
+                // $("#gallery").css({ "margin-bottom": tempHeight / 7 + "px" })
+        }
+    }
+    window.onresize = resizeContents;
 
     // Vibrant JS
     // var v = new Vibrant();
@@ -58,13 +101,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         display: 'block'
     });
     optionHeight = $("#gallery").height();
-    if (global_brow_width >= 768) {
-        // Setting Grid content
-        var marginTop = $(".gridPartB").innerHeight() - $(".gridPartA").innerHeight();
-        $(".pushUp").css({
-            "margin-top": "-" + marginTop + "px"
-        })
-    }
+    resizeContents()
     if (global_brow_width > 1200) {
 
         var scene = document.getElementById('js-scene');
@@ -316,3 +353,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
         });
     });
 });
+
+// Global function
+
+function showInfoSlide() {
+    previousCss = $(".slideContainer").attr("style");
+    $(".slideContainer").css({
+        // position: 'absolute', // Optional if #myDiv is already absolute
+        visibility: 'hidden',
+        display: 'block'
+    });
+    optionHeight = $("#gallery").height();
+}
+
+function hideInfoSlide() {
+    $(".slideContainer").attr("style", previousCss ? previousCss : "");
+}

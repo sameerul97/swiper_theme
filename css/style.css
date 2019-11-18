@@ -554,14 +554,29 @@
      background: #eeeeee;
      transition: transform 0.3s ease 0s;
  }
- 
- .gridA {
+ /* .gridA {
      background-color: #880e69;
      color: white;
-     background: linear-gradient( #880e69, #880e69) no-repeat 0px 0px;
+ } */
+ 
+ .gridA {
+     background: linear-gradient( #880e69, #880e69);
+     background-repeat: no-repeat;
+     background-position: 0px 0px;
  }
  
  .gridB {
+     background: linear-gradient( #880e69, #880e69);
+     background-repeat: no-repeat;
+     background-position: 0px 0px;
+ }
+ 
+ .gridC {
+     background-color: #1a5fa0!important;
+     color: white;
+ }
+ 
+ .gridD {
      background-color: #1a5fa0!important;
      color: white;
  }

@@ -53,6 +53,7 @@ var myTask = Vue.component('infocontent-template', {
             console.log('Prop changed: ', newVal, ' | was: ', oldVal, this.project);
             // console.log(store.getters.getInfoData);
             this.projectTitle = store.getters.getInfoData(this.project);
+            this.gridContentInit();
             this.galleryInit();
             this.smgInitContentHeroImage();
             // this.cursorInit();
@@ -184,11 +185,31 @@ var myTask = Vue.component('infocontent-template', {
             optionHeight = $("#gallery").height();
             // console.log(optionHeight, $("#js-scene").height())
             // Setting Parallax for Gallery Section
-            var scene = document.getElementById('js-scene');
-            parallax = new Parallax(scene, {
-                selector: '.layer',
-                hoverOnly: true
-            });
+            if (global_brow_width > 1200) {
+
+                var scene = document.getElementById('js-scene');
+                parallax = new Parallax(scene, {
+                    selector: '.layer',
+                    hoverOnly: true
+                });
+                // console.log(optionHeight, $("#js-scene").height())
+                // Setting Parallax for Gallery Section
+
+                // var tempHeight = $("#gallery").outerHeight();
+                // $("#gallery").css({ "height": tempHeight * 2 + "px" })
+                // $("#js-scene").css({ "height": tempHeight * 2 + "px" })
+                // $("#gallery").css({ "margin-top": tempHeight / 7 + "px" })
+                // $("#gallery").css({ "margin-bottom": tempHeight / 7 + "px" })
+            } else {
+                // console.log(optionHeight, $("#js-scene").height())
+                // Setting Parallax for Gallery Section
+
+                var tempHeight = $("#gallery").outerHeight();
+                $("#gallery").css({ "height": "auto" })
+                $("#js-scene").css({ "height": "auto" })
+                    // $("#gallery").css({ "margin-top": tempHeight / 7 + "px" })
+                    // $("#gallery").css({ "margin-bottom": tempHeight / 7 + "px" })
+            }
             // var tempHeight = $("#gallery").outerHeight();
             // $("#gallery").css({ "height": tempHeight * 2 + "px" })
             // $("#js-scene").css({ "height": tempHeight * 2 + "px" })
@@ -197,6 +218,47 @@ var myTask = Vue.component('infocontent-template', {
             $(".slideContainer").attr("style", previousCss ? previousCss : "");
             // })
         },
+        gridContentInit: function() {
+            console.log("@Grid Content Initialising");
+            showInfoSlide();
+            var controller = new ScrollMagic.Controller();
+            // Set Scene
+            var gridA_Width = $(".gridA").innerWidth();
+            var gridA_Height = $(".gridA").innerHeight();
+            var gridB_Width = $(".gridA").innerWidth() * 2;
+            var gridB_height = $(".gridB").innerHeight();
+            console.log(gridA_Width);
+            hideInfoSlide();
+            var tlsetScene = new TimelineMax();
+            tlsetScene.set(".gridA", { backgroundPosition: "-" + gridA_Width + "px 0px" });
+            tlsetScene.set(".gridB", { backgroundPosition: "-" + gridB_Width + "px -" + gridA_Height + "px" });
+            var containerSetScene = new ScrollMagic.Scene({
+                    triggerElement: '.contentHeroImageContainer',
+                    triggerHook: 0.5,
+                    reverse: true
+                })
+                .setTween(tlsetScene)
+                .addTo(controller);
+            var val = gridB_height - gridA_Height;
+
+            // Scene Action
+            var tlSceneAction = new TimelineMax();
+            tlSceneAction.to(".gridA", .5, { ease: Expo.easeIn, backgroundPosition: "0px 0px" });
+            tlSceneAction.to(".gridB", .5, { ease: Expo.easeIn, backgroundPosition: "-" + gridB_Width / 2 + "px -" + val + "px" }, "-=.5");
+            tlSceneAction.to(".gridB", .5, { backgroundPosition: "0px -" + val + "px" });
+            tlSceneAction.to(".gridB", .5, { ease: Expo.easeOut, backgroundPosition: "0px 0px" });
+
+
+
+            var containerSceneAction = new ScrollMagic.Scene({
+                    triggerElement: '.gridA',
+                    triggerHook: 0.5,
+                    reverse: true
+                })
+                .setTween(tlSceneAction)
+                // .addIndicators()
+                .addTo(controller);
+        },
         galleryInit: function() {
             // var scene = document.getElementById('js-scene');
             // parallax = new Parallax(scene);
@@ -204,7 +266,7 @@ var myTask = Vue.component('infocontent-template', {
                 // var scene = document.getElementById('js-scene');
                 // parallax = new Parallax(scene);
                 parallax.destroy();
-                parallax = null;
+                // parallax = null;
                 this.galleryAnimated = false;
                 global_TimelineMax = new TimelineMax();
                 $(".heroImageAnim").removeClass("heroImageAnim")

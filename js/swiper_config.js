@@ -36,7 +36,7 @@ var swiper = new Swiper('.swiper-container', {
             direction: 'horizontal',
         },
         1024: {
-            slidesPerView: 5,
+            slidesPerView: 2,
             direction: 'horizontal',
         },
     }
