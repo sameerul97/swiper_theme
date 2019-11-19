@@ -56,21 +56,15 @@ var myTask = Vue.component('infocontent-template', {
             this.gridContentInit();
             this.galleryInit();
             this.smgInitContentHeroImage();
-            this.cursorInit();
+            // this.cursorInit();
             this.smgInitGallery();
             this.carouselInit();
+
+            // Testing this 
+            this.smgInitGallery2();
+
             // Initiate gallery once the project is loaded
             console.log($("#gallery").outerHeight())
-
-            // $("#gallery").css({ "height": $("#gallery").outerHeight() * 1.2 + "px" })
-            // $("#gallery").css({ "margin-top": $("#gallery").height() / 7 + "px" })
-            // $("#gallery").css({ "margin-bottom": $("#gallery").height() / 7 + "px" })
-            // this.imgData = store.getters.getSwiperAnimData;
-            // console.log(store.getters.getSwiperAnimData)
-            // console.log(this.imgData, this.projectTitle)
-            // console.log(store.getters.getInfoData(this.project))
-            // console.log(store.getters.getSwiperAnimData.imgData.imgBgPosition);
-            // this.project = store.getters.getInfoData.header;
         }
     },
     mounted: function() {
@@ -83,8 +77,7 @@ var myTask = Vue.component('infocontent-template', {
             // store.getters.getInfoData(this.project)
             // this.project = store.getters.getInfoData.header;
         }
-        // this.swiper_list = store.getters.getSwiperInitialData;
-        // console.log(store.state.data[0].imageId_classname)
+
     },
     methods: {
         greet: function(event) {
@@ -271,7 +264,7 @@ var myTask = Vue.component('infocontent-template', {
                 global_TimelineMax = new TimelineMax();
                 $(".heroImageAnim").removeClass("heroImageAnim")
 
-                global_TimelineMax.to('.imageWrapper', 1, {
+                global_TimelineMax.to('#gallery .imageWrapper', 1, {
                     duration: 1,
                     ease: Expo.easeInOut,
                     left: "0px",
@@ -368,10 +361,78 @@ var myTask = Vue.component('infocontent-template', {
                     // .addIndicators()
                     .addTo(controller);
                 testArr[1].push(gallerySceneAction);
-
-
             }
             // }
+        },
+        smgInitGallery2: function() {
+            console.log("@Gallery 2 Initialising")
+            var controller = new ScrollMagic.Controller();
+            // Set Scene
+            var tlsetScene = new TimelineMax();
+            var galleryImages = $("#gallery2").find(".imageWrapper");
+            for (i = 0; i < galleryImages.length; i++) {
+                console.log(galleryImages[i]);
+                global_TimelineMax = new TimelineMax();
+                if (i % 2 == 0) {
+                    global_TimelineMax.set(galleryImages[i], { rotation: -20, yPercent: "200%" });
+                } else {
+                    global_TimelineMax.set(galleryImages[i], { rotation: 20, yPercent: "180%" });
+                }
+                gallerySceneAction = new ScrollMagic.Scene({
+                        triggerElement: '.contentHeroImageContainer',
+                        triggerHook: 0.95,
+                        reverse: true
+                    })
+                    .setTween(global_TimelineMax)
+                    .addTo(controller);
+                testArr[0].push(gallerySceneAction);
+            }
+            //   Scene Action
+            for (i = 0; i < galleryImages.length; i++) {
+                if (i % 2 == 0) {
+                    // Delay
+                    global_TimelineMax = new TimelineMax({ delay: i - i * 0.9 + 0.055 });
+                } else {
+                    global_TimelineMax = new TimelineMax();
+                }
+                global_TimelineMax.to(galleryImages[i], 1.5, { rotation: 0, yPercent: "0%" });
+                gallerySceneAction = new ScrollMagic.Scene({
+                        triggerElement: '#gallery2',
+                        triggerHook: 0.6,
+                        reverse: this.galleryAnimated
+                    })
+                    .setTween(global_TimelineMax)
+                    .addTo(controller);
+                testArr[1].push(gallerySceneAction);
+            }
+            // Animating Gallery on Scroll 
+            var tlSceneAction2 = new TimelineMax();
+            tlSceneAction2.set("#gallery2", {
+                onCompleteParams: [tlSceneAction2],
+                onComplete: function() {
+                    setTimeout(function() {
+                        $("#gallery2").addClass("carousel1TempClass")
+                    }, 2000)
+                }
+            });
+            tlSceneAction2.to("#gallery2 .imageWrapper:nth-child(1)", 1, {
+                duration: 1,
+                ease: Expo.easeInOut,
+                left: "0px",
+                top: "0px",
+                height: "auto",
+                padding: "1%"
+            });
+
+            var scene0 = new ScrollMagic.Scene({
+                    triggerElement: "#gallery2",
+                    triggerHook: ".1",
+                    duration: "100%"
+                })
+                .setPin("#gallery2")
+                .setTween(tlSceneAction2)
+                // .addIndicators({ name: "Gallery2  pin Trigger" })
+                .addTo(controller);
         },
         cursorInit: function(event) {
             $(document).on('mousemove', function(e) {
@@ -386,7 +447,6 @@ var myTask = Vue.component('infocontent-template', {
         },
         carouselInit: function(event) {
             if (global_brow_width > 992 && !this.initCarouselOnce) {
-                console.log("RUnning carousel  Init")
                 this.initCarouselOnce = true;
                 // need this function to take place only once
                 var controller = new ScrollMagic.Controller();
