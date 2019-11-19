@@ -17,17 +17,10 @@
 
 <body>
     <div id="app">
-        <!-- <local-component test="fooboo"></local-component>
 
-        <global-component></global-component> -->
         <div class="myDiv"></div>
-
         <div class="swiper-container">
             <div class="swiper-wrapper hero">
-                <!-- <li v-for="x in todos">
-                    {{ x.text }}
-                </li> -->
-
                 <div v-for="x in swiper_list" class="swiper-slide color-1" :id=x.swiper_id>
                     <div class="col-12 h-100 column remove-margin-padding overflow-hidden" :id=x.wrapper_id>
                         <div v-bind:data-background="x.imgSrc" v-on:click="sendData(x.imageId_classname)" data-columns="first" class="with-gradient Backgroundimage img-bg-props swiper-lazy h-100" :class=x.imageId_classname :id=x.imageId_classname>
@@ -79,7 +72,7 @@
                                 <div class="col-lg-6 h-100 gridA text px-0  text-white p-5">
                                     <h1 class="outline py-2">Lorem ipsum dolor sit amet..</h1>
                                     <h3 class="subtitle py-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit</h3>
-                                    <p class="short_dsv py-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia quibusdam ipsum aliquam fugiat quos aspernatur hic iusto voluptatum consequuntur consectetur.</p>
+                                    <p class="short_dsc py-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia quibusdam ipsum aliquam fugiat quos aspernatur hic iusto voluptatum consequuntur consectetur.</p>
                                 </div>
                                 <div class="col-lg-6 gridB px-0 text-white p-5">
                                     <img src="img/heroContentImageTest.jpg" alt="" class="img-fluid">
@@ -92,7 +85,7 @@
                                 <div class="col-lg-6 bg-info p-5 h-100 text gridD">
                                     <h1 class="outline py-2">Lorem ipsum dolor sit amet..</h1>
                                     <h3 class="subtitle py-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit</h3>
-                                    <p class="short_dsv py-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia quibusdam ipsum aliquam fugiat quos aspernatur hic iusto voluptatum consequuntur consectetur.</p>
+                                    <p class="short_dsc py-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia quibusdam ipsum aliquam fugiat quos aspernatur hic iusto voluptatum consequuntur consectetur.</p>
                                 </div>
                             </div>
 
@@ -269,108 +262,7 @@
                 </section>
             </div>
         </infocontent-template>
-
     </div>
-    <!-- <div class="swiper-container"> -->
-    <!-- <div class="swiper-wrapper hero"> -->
-    <!-- <div class="swiper-slide color-1" id="swiper-slide-1">
-                <div class="col-12 column remove-margin-padding overflow-hidden" id="wrapper1">
-                    <div data-background="img/seoul.jpeg" data-columns="first" class="Backgroundimage img-bg-props bg1 swiper-lazy h-100" id="bg1">
-                        <div class="swiper-lazy-preloader"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide color-2" id="swiper-slide-2">
-                <div class="col-12 column remove-margin-padding overflow-hidden" id="wrapper2">
-                    <div data-background="img/ny_city.jpeg" data-columns="second" class="Backgroundimage img-bg-props bg2 swiper-lazy h-100" id="bg2">
-                        <div class="swiper-lazy-preloader"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide color-3" id="swiper-slide-3">
-                <div class="col-12 column remove-margin-padding overflow-hidden" id="wrapper3">
-                    <div data-background="img/france.jpeg" data-columns="third" class="Backgroundimage img-bg-props bg3 swiper-lazy h-100" id="bg3">
-                        <div class="swiper-lazy-preloader"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide color-4" id="swiper-slide-4">
-                <div class="col-12 column remove-margin-padding overflow-hidden" id="wrapper4">
-                    <div data-background="img/airplane.jpeg" data-columns="first" class="Backgroundimage img-bg-props bg4 swiper-lazy h-100" id="bg4">
-                        <div class="swiper-lazy-preloader"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide color-5" id="swiper-slide-5">
-                <div class="col-12 column remove-margin-padding overflow-hidden" id="wrapper5">
-                    <div data-background="img/granc_c.jpeg" data-columns="second" class="Backgroundimage img-bg-props bg5 swiper-lazy h-100" id="bg5">
-                        <div class="swiper-lazy-preloader"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide color-6" id="swiper-slide-6">
-                <div class="col-12 column remove-margin-padding overflow-hidden" id="wrapper6">
-                    <div data-background="img/nike.jpeg" data-columns="third" class="Backgroundimage img-bg-props bg6 swiper-lazy h-100" id="bg6">
-                        <div class="swiper-lazy-preloader"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide color-5" id="swiper-slide-7">
-                <div class="col-12 column remove-margin-padding overflow-hidden" id="wrapper7">
-                    <div data-background="img/granc_c.jpeg" data-columns="second" class="Backgroundimage img-bg-props bg5 swiper-lazy h-100" id="bg7">
-                        <div class="swiper-lazy-preloader"></div>
-                    </div>
-                </div>
-            </div> -->
-    <!-- <div class="swiper-slide color-2">
-
-            </div>
-            <div class="swiper-slide color-3">
-
-            </div>
-            <div class="swiper-slide color-4">
-
-            </div>
-            <div class="swiper-slide color-5">
-
-            </div> -->
-    <!-- </div> -->
-    <!-- Add Pagination -->
-    <!-- <div class="swiper-pagination"></div> -->
-    <!-- </div> -->
-
-    <!-- <div class="main">
-        <section class="hero remove-margin-padding">
-            <div class="row h-100 remove-margin-padding overflow-hidden">
-                <div class="col-md-4 column remove-margin-padding overflow-hidden" id="tempId1">
-                    <div data-columns="first" class="Backgroundimage img-bg-props bg1 h-100" id="bg1"></div>
-                </div>
-                <div class="col-md-4 column remove-margin-padding overflow-hidden" id="tempId2">
-                    <div data-columns="second" class="Backgroundimage img-bg-props bg2 h-100" id="bg2"></div>
-                </div>
-                <div class="col-md-4 column remove-margin-padding overflow-hidden" id="tempId3">
-                    <div data-columns="third" class="Backgroundimage img-bg-props bg3 h-100" id="bg3"></div>
-                </div>
-            </div>
-
-        </section>
-        <section class="hero">
-            <div class="row h-100">
-                <div class="col-sm-4 column remove-margin-padding overflow-hidden" id="tempId4">
-                    <div data-columns="first" class="Backgroundimage img-bg-props bg4 h-100" id="bg4"></div>
-                </div>
-                <div class="col-sm-4 column remove-margin-padding overflow-hidden" id="tempId5">
-                    <div data-columns="second" class="Backgroundimage img-bg-props bg5 h-100" id="bg5"></div>
-                </div>
-                <div class="col-sm-4 column remove-margin-padding overflow-hidden" id="tempId6">
-                    <div data-columns="third" class="Backgroundimage img-bg-props bg6 h-100" id="bg6"></div>
-                </div>
-            </div>
-
-        </section>
-    </div> -->
-
-
 </body>
 <!-- GSAP Animation JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
@@ -383,24 +275,25 @@
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.0/js/swiper.min.js'></script>
+
 <!-- {Parallax JS} -->
 <script src="js/parallax.min.js"></script>
 <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/parallax/2.1.3/parallax.min.js'></script> -->
+
 <!-- { Scroll Magic } -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.gsap.min.js"></script>
+
 <!-- { Vibrant JS } -->
 <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.4/dist/vibrant.min.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.10.0/rellax.min.js"></script> -->
+
 <!-- Importing Vue Js -->
 <script src="https://unpkg.com/vue"></script>
 <script src="https://unpkg.com/vuex@3.1.0/dist/vuex.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
 <script src="js/data_vuex.js"></script>
-<!-- <script src="js/app.js"></script> -->
-
-<!-- <script src="js/app.js"></script> -->
 
 <script src="js/InfoComp.js"></script>
 <script src="js/infocontent.js"></script>
@@ -411,451 +304,5 @@
 <script src="js/app.js"></script>
 <script src="js/swiper_config.js"></script>
 
-<script type="text/javascript">
-    // var swiper = new Swiper('.swiper-container', {
-    //     slidesPerView: 3,
-    //     spaceBetween: 0,
-    //     mousewheelControl: true,
-    //     freeMode: true,
-    //     // grabCursor: true,
-    //     // speed: 900,
-    //     direction: 'horizontal',
-    //     parallax: true,
-    //     preloadImages: false,
-    //     lazyLoading: true,
-    //     // direction: 'vertical',
-    //     lazy: {
-    //         loadPrevNext: true,
-    //         loadPrevNextAmount: 3
-    //     },
-    //     pagination: {
-    //         el: '.swiper-pagination',
-    //         clickable: true,
-    //     },
-    //     mousewheel: {
-    //         sensitivity: true,
-    //     },
-    //     keyboard: {
-    //         enabled: true,
-    //         onlyInViewport: false,
-    //     },
-    //     breakpoints: {
-    //         640: {
-    //             slidesPerView: 3,
-    //             spaceBetween: 0,
-    //             direction: 'vertical'
-    //         },
-    //         768: {
-    //             slidesPerView: 3,
-    //             direction: 'horizontal',
-    //         },
-    //         1024: {
-    //             slidesPerView: 5,
-    //             direction: 'horizontal',
-    //         },
-    //     }
-    // });
-    // var chosenColumn;
-    // var selectedItemId;
-    // var imgData = {
-    //     "imgHeight": "",
-    //     "imgWidth": "",
-    //     "imgTop": "",
-    //     "imgLeft": "",
-    //     "imgBgPosition": "",
-    //     "imgScale": ""
-    // }
-    // var wrapperId, swiper_slider_id;
-    // var firstThree, nextThree;
-    // document.addEventListener("DOMContentLoaded", function(event) {
-    //     // Your code to run since DOM is loaded and ready
-    //     var image = document.getElementsByClassName('bg1');
-    //     $img = $("body").find('.hero .img-bg-props');
-    //     // var imgData = {
-    //     //     imgHeight,
-    //     //     imgWidth,
-    //     //     imgLeft,
-    //     //     imgBgPosition
-    //     // };
-
-    //     $('.Backgroundimage').each(function() {
-    //         console.log(this);
-    //         $('#' + this.id).on('click', function() {
-    //             console.log(this);
-
-    //             // $(".main").disable();
-    //             // $(".onepage-pagination").css({
-    //             //     "opacity": 0
-    //             // })
-    //             chosenColumn = document.querySelector("#" + this.id);
-    //             chosenColumn = chosenColumn.dataset.columns;
-    //             chosenColumn = $("#" + this.id).attr("data-columns");
-    //             selectedItemId = this.id;
-    //             console.log($("#" + this.id).attr("data-columns"));
-    //             // console.log(article.dataset.columns);
-    //             // console.log("Clcked", $(this))
-    //             // console.log(this.id, $('#' + this.id).css("background-image"));
-    //             // console.log($("#" + this.id).prev(), $("#" + this.id).prev().prevObject.attr('id'))
-    //             wrapperId = document.getElementById(this.id).parentNode.id;
-    //             console.log(wrapperId)
-    //             swiper_slider_id = document.getElementById(wrapperId).parentNode.id; //Get the swiper-slide-id and move the next two element
-    //             console.log(swiper_slider_id)
-    //             var imgSrc = $('#' + this.id).css("background-image");
-    //             // var src = imgSrc.match(/"([^]+)"/)[1]
-    //             // console.log(src);
-    //             $("#infoSlideBackgroundimage").css({
-    //                 "background-image": $('#' + this.id).css("background-image")
-    //             })
-    //             console.log($('#' + this.id).height(), $('#' + this.id).width(), $('#' + swiper_slider_id).width())
-    //             imgData.imgHeight = $('#' + this.id).height();
-    //             imgData.imgWidth = $('#' + swiper_slider_id).width();
-    //             imgData.imgLeft = $(document.getElementById(swiper_slider_id)).offset().left;
-    //             imgData.imgTop = $(document.getElementById(swiper_slider_id)).offset().top;
-    //             console.log($(document.getElementById(swiper_slider_id)).offset().left)
-    //             imgData.imgBgPosition = $('#' + this.id).css("background-position");
-    //             imgData.imgScale = document.getElementById(this.id).getBoundingClientRect().width / document.getElementById(this.id).offsetWidth;
-    //             console.log(imgData.imgHeight + " , " + imgData.imgLeft)
-
-    //             console.log($(document.getElementById(this.id)).offset().left)
-    //             var tl0 = new TimelineMax();
-    //             tl0.set('#infoSlideBackgroundimage', {
-    //                 height: $('#' + swiper_slider_id).height() + 'px',
-    //                 width: ($('#' + swiper_slider_id).width()) + 'px',
-    //                 // left: $(document.getElementById(swiper_slider_id)).offset().left + "px",
-    //                 backgroundPosition: $('#' + this.id).css("background-position"),
-    //                 scale: imgData.imgScale,
-
-    //             })
-    //             tl0.set(".infoSectionImageWrapper", {
-    //                 width: $('#' + swiper_slider_id).width() + 'px',
-    //                 height: $('#' + swiper_slider_id).height() + 'px',
-    //                 left: imgData.imgLeft + "px",
-    //                 top: imgData.imgTop + "px",
-
-    //             })
-    //             var swiperIds = [];
-    //             swiperIds[3] = swiper_slider_id;
-    //             console.log(swiperIds)
-
-    //             // Grab all three prev elements
-    //             for (i = 3; i > 0; i--) {
-    //                 console.log(i);
-    //                 if ($('#' + swiperIds[i]).prev().attr("id") != undefined) {
-    //                     //  console.log($('#' + swiperIds[i]).prev().attr("id"))
-    //                     var tempHolder = $('#' + swiperIds[i]).prev().attr("id");
-    //                     i--;
-    //                     swiperIds[i] = tempHolder;
-    //                     i++;
-    //                 } else {
-    //                     i--;
-    //                     swiperIds[i] = undefined;
-    //                     i++;
-    //                 }
-    //             }
-    //             // console.log(swiperIds)
-    //             // Grab all three next elements
-    //             for (i = 3; i < 6; i++) {
-    //                 console.log(i);
-    //                 if ($('#' + swiperIds[i]).next().attr("id") != undefined) {
-    //                     //  console.log($('#' + swiperIds[i]).prev().attr("id"))
-    //                     var tempHolder = $('#' + swiperIds[i]).next().attr("id");
-    //                     i++;
-    //                     swiperIds[i] = tempHolder;
-    //                     i--;
-    //                 } else {
-    //                     i++;
-    //                     swiperIds[i] = undefined;
-    //                     i--;
-    //                 }
-    //             }
-    //             // console.log(swiperIds)
-    //             firstThree = swiperIds.slice(0, 3);
-    //             nextThree = swiperIds.slice(4);
-    //             // console.log(firstThree);
-    //             // console.log(nextThree[0]);
-    //             for (i = 0; i < nextThree.length; i++) {
-    //                 tl0.to('#' + nextThree[i], 1, {
-    //                     duration: 2.5,
-    //                     ease: Expo.easeInOut,
-    //                     x: "200%"
-    //                 }, "-=1")
-    //             }
-    //             for (i = 0; i < firstThree.length; i++) {
-    //                 tl0.to('#' + firstThree[i], 1, {
-    //                     duration: 2.5,
-    //                     ease: Expo.easeInOut,
-    //                     x: "-200%"
-    //                 }, "-=1")
-    //             }
-    //             // switch (chosenColumn) {
-
-    //             //     case "first":
-    //             //         // var secondEleId = $('#' + this.id).parent().next().attr("id");
-    //             //         // var thirdEleId = $('#' + secondEleId).next().attr("id");
-    //             //         var secondEleId = $('#' + swiper_slider_id).next().attr("id")
-    //             //         var thirdEleId = $('#' + secondEleId).next().attr("id");
-
-    //             //         tl0.to('#' + firstThree[0] + " , #" + firstThree[1], " , #" + firstThree[2], 1, {
-    //             //             duration: 2.5,
-    //             //             ease: Expo.easeInOut,
-    //             //             x: "200%"
-    //             //         }, "-=1")
-    //             //         break;
-    //             //     case "second":
-    //             //         // var firstEleId = $("#" + $('#' + this.id).parent().attr("id")).prev().attr("id");
-    //             //         // var thirdEleId = $("#" + $('#' + this.id).parent().attr("id")).next().attr("id");
-    //             //         var firstEleId = $('#' + swiper_slider_id).prev().attr("id");
-    //             //         var thirdEleId = $('#' + swiper_slider_id).next().attr("id")
-    //             //         console.log(firstEleId, thirdEleId)
-
-    //             //         tl0.to('#' + firstEleId, 1, {
-    //             //             duration: 2.5,
-    //             //             ease: Expo.easeInOut,
-    //             //             x: "-100%"
-    //             //         })
-    //             //         tl0.to('#' + thirdEleId, 1, {
-    //             //             duration: 2.5,
-    //             //             ease: Expo.easeInOut,
-    //             //             x: "100%"
-    //             //         }, "-=1")
-    //             //         break;
-    //             //     case "third":
-    //             //         // var secondEleId = $("#" + $('#' + this.id).parent().attr("id")).prev().attr("id");
-    //             //         // var firstEleId = $('#' + secondEleId).prev().attr("id");
-    //             //         var secondEleId = $('#' + swiper_slider_id).prev().attr("id")
-    //             //         var firstEleId = $('#' + secondEleId).prev().attr("id");
-    //             //         console.log(secondEleId, firstEleId)
-
-    //             //         tl0.to('#' + secondEleId + " , #" + firstEleId, 1, {
-    //             //             duration: 2.5,
-    //             //             ease: Expo.easeInOut,
-    //             //             x: "-200%"
-    //             //         }, "-=1")
-    //             //         break;
-    //             // }
-    //             tl0.to('#infoSlideBackgroundimage , .infoSectionImageWrapper', 1, {
-    //                 duration: 2,
-    //                 ease: Expo.easeInOut,
-    //                 height: "100vh",
-    //                 width: "100%",
-    //                 left: "0px",
-    //                 top: "0px",
-    //                 // scale: 1.1,
-    //                 backgroundPosition: $('#' + this.id).css("background-position"),
-    //                 scale: 1
-    //             }, "-=1")
-    //             tl0.to('.infoSection', 0, {
-    //                 opacity: 1,
-    //                 zIndex: 1
-    //             }, "-=1")
-    //             tl0.set('.hero', {
-    //                 opacity: 0,
-    //                 zIndex: -1
-    //             })
-    //         });
-    //     });
-
-    //     $('.close-button').on('click', function() {
-    //         var tl0 = new TimelineMax();
-    //         // console.log(imgData.imgHeight.imgData.imgLeft)
-    //         console.log("Close button", ($('#' + selectedItemId).width()) + 'px');
-    //         tl0.set('.hero', {
-    //             opacity: 1,
-    //             zIndex: 1
-    //         })
-    //         tl0.to(".infoSectionImageWrapper", 1, {
-    //             duration: 2,
-    //             ease: Expo.easeInOut,
-    //             width: $('#' + selectedItemId).width() + 'px',
-    //             height: $('#' + swiper_slider_id).height() + 'px',
-    //             left: imgData.imgLeft + "px",
-    //             top: imgData.imgTop + "px",
-
-    //         }, "-=1")
-    //         tl0.to('#infoSlideBackgroundimage', 1, {
-    //             duration: 2,
-    //             ease: Expo.easeInOut,
-    //             backgroundPosition: imgData.imgBgPosition,
-    //             height: $('#' + selectedItemId).height() + 'px',
-    //             // top: imgData.imgTop + "px",
-    //             scale: imgData.imgScale
-    //         }, "-=1")
-    //         for (i = 0; i < nextThree.length; i++) {
-    //             tl0.to('#' + nextThree[i], 1, {
-    //                 duration: 2.5,
-    //                 ease: Expo.easeInOut,
-    //                 x: "0%"
-    //             }, "-=1")
-    //         }
-    //         for (i = 0; i < firstThree.length; i++) {
-    //             tl0.to('#' + firstThree[i], 1, {
-    //                 duration: 2.5,
-    //                 ease: Expo.easeInOut,
-    //                 x: "0%"
-    //             }, "-=1")
-    //         }
-
-    //         // switch (chosenColumn) {
-    //         //     case "first":
-    //         //         var secondEleId = $('#' + selectedItemId).parent().next().attr("id");
-    //         //         var thirdEleId = $('#' + secondEleId).next().attr("id");
-    //         //         tl0.to(".infoSectionImageWrapper", 1, {
-    //         //             duration: 2,
-    //         //             ease: Expo.easeInOut,
-    //         //             width: $('#' + selectedItemId).width() + 'px',
-    //         //         }, "-=1")
-    //         //         tl0.to('#infoSlideBackgroundimage', 1, {
-    //         //             duration: 2,
-    //         //             ease: Expo.easeInOut,
-    //         //             width: $('#' + selectedItemId).width() + 'px',
-    //         //             left: imgData.imgLeft + "px",
-    //         //             backgroundPosition: imgData.imgBgPosition,
-    //         //             scale: imgData.imgScale
-    //         //         }, "-=1");
-
-
-    //         //         tl0.to('#' + secondEleId + " , #" + thirdEleId, 1, {
-    //         //             duration: 2,
-    //         //             ease: Expo.easeInOut,
-    //         //             x: "0%"
-    //         //         }, "-=1")
-    //         //         break;
-    //         //     case "second":
-    //         //         var firstEleId = $("#" + $('#' + selectedItemId).parent().attr("id")).prev().attr("id");
-    //         //         var thirdEleId = $("#" + $('#' + selectedItemId).parent().attr("id")).next().attr("id");
-    //         //         tl0.to(".infoSectionImageWrapper", 1, {
-    //         //             duration: 2,
-    //         //             ease: Expo.easeInOut,
-    //         //             width: $('#' + selectedItemId).width() + 'px',
-    //         //             left: imgData.imgLeft + "px"
-    //         //         }, "-=1")
-    //         //         tl0.to('#infoSlideBackgroundimage', 1, {
-    //         //             duration: 2,
-    //         //             ease: Expo.easeInOut,
-    //         //             backgroundPosition: imgData.imgBgPosition,
-    //         //             scale: imgData.imgScale
-    //         //         }, "-=1")
-
-    //         //         tl0.to('#' + firstEleId, 1, {
-    //         //             duration: 2,
-    //         //             ease: Expo.easeInOut,
-    //         //             x: "0%"
-    //         //         }, "-=1")
-    //         //         tl0.to('#' + thirdEleId, 1, {
-    //         //             duration: 2,
-    //         //             ease: Expo.easeInOut,
-    //         //             x: "0%"
-    //         //         }, "-=1")
-    //         //         break;
-    //         //     case "third":
-    //         //         var secondEleId = $("#" + $('#' + selectedItemId).parent().attr("id")).prev().attr("id");
-    //         //         var firstEleId = $('#' + secondEleId).prev().attr("id");
-    //         //         tl0.to('#infoSlideBackgroundimage', 1, {
-    //         //             duration: 2,
-    //         //             ease: Expo.easeInOut,
-    //         //             backgroundPosition: imgData.imgBgPosition,
-    //         //             scale: imgData.imgScale
-    //         //         }, "-=1")
-    //         //         tl0.to(".infoSectionImageWrapper", 1, {
-    //         //             duration: 2,
-    //         //             ease: Expo.easeInOut,
-    //         //             width: $('#' + selectedItemId).width() + 'px',
-    //         //             left: imgData.imgLeft + "px"
-    //         //         }, "-=1")
-    //         //         tl0.to('#' + secondEleId + ', #' + firstEleId, 1, {
-    //         //             duration: 2,
-    //         //             ease: Expo.easeInOut,
-    //         //             x: "0%"
-    //         //         }, "-=1")
-    //         //         break;
-    //         // }
-    //         tl0.set('.infoSection', {
-    //             opacity: 0,
-    //             zIndex: -1
-    //         })
-    //         $(".onepage-pagination").css({
-    //             "opacity": 1
-    //         })
-    //         imgData = {
-    //             "imgHeight": "",
-    //             "imgWidth": "",
-    //             "imgTop": "",
-    //             "imgLeft": "",
-    //             "imgBgPosition": "",
-    //             "imgScale": ""
-    //         }
-    //     })
-    // });
-
-    // $(".main").onepage_scroll({
-    //     sectionContainer: ".hero", // sectionContainer accepts any kind of selector in case you don't want to use section
-    //     easing: "ease", // Easing options accepts the CSS3 easing animation such "ease", "linear", "ease-in",
-    //     // "ease-out", "ease-in-out", or even cubic bezier value such as "cubic-bezier(0.175, 0.885, 0.420, 1.310)"
-    //     animationTime: 1000, // AnimationTime let you define how long each section takes to animate
-    //     pagination: true, // You can either show or hide the pagination. Toggle true for show, false for hide.
-    //     updateURL: false, // Toggle this true if you want the URL to be updated automatically when the user scroll to each page.
-    //     beforeMove: function(index) {}, // This option accepts a callback function. The function will be called before the page moves.
-    //     afterMove: function(index) {}, // This option accepts a callback function. The function will be called after the page moves.
-    //     loop: false, // You can have the page loop back to the top/bottom when the user navigates at up/down on the first/last page.
-    //     keyboard: true, // You can activate the keyboard controls
-    //     responsiveFallback: false, // You can fallback to normal page scroll by defining the width of the browser in which
-    //     // you want the responsive fallback to be triggered. For example, set this to 600 and whenever
-    //     // the browser's width is less than 600, the fallback will kick in.
-    //     direction: "horizontal" // You can now define the direction of the One Page Scroll animation. Options available are "vertical" and "horizontal". The default value is "vertical".  
-    // });
-</script>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div id="app-5">
-    <p>{{ message }}</p>
-    <button v-on:click="reverseMessage">Reverse Message</button>
-</div>
-
-<div id="app-6">
-    <p>{{ message }}</p>
-    <input v-model="message">
-</div>
-
-<div id="app">
-    <ul>
-        <li v-for="x in todos">
-            {{ x.text }}
-        </li>
-    </ul>
-</div> -->
-
-<!-- <script>
-    var app5 = new Vue({
-        el: '#app-5',
-        data: {
-            message: 'Hello Vue.js!'
-        },
-        methods: {
-            reverseMessage: function() {
-                this.message = this.message.split('').reverse().join('')
-            }
-        }
-    })
-    var app6 = new Vue({
-        el: '#app-6',
-        data: {
-            message: 'Hello Vue!'
-        }
-    })
-</script> -->

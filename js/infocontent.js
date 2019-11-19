@@ -56,7 +56,7 @@ var myTask = Vue.component('infocontent-template', {
             this.gridContentInit();
             this.galleryInit();
             this.smgInitContentHeroImage();
-            // this.cursorInit();
+            this.cursorInit();
             this.smgInitGallery();
             this.carouselInit();
             // Initiate gallery once the project is loaded
@@ -467,9 +467,7 @@ var myTask = Vue.component('infocontent-template', {
                     // .addIndicators({ name: "Carousel pin Trigger" })
                     .addTo(controller);
             }
-
         },
-
     }
     // props: ['task']
 });

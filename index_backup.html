@@ -1,0 +1,864 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue Swiper App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/onepage-scroll/1.3.1/onepage-scroll.min.css"> -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700&display=swap" rel="stylesheet">
+</head>
+
+
+
+<body>
+    <div id="app">
+        <!-- <local-component test="fooboo"></local-component>
+
+        <global-component></global-component> -->
+        <div class="myDiv"></div>
+
+        <div class="swiper-container">
+            <div class="swiper-wrapper hero">
+                <!-- <li v-for="x in todos">
+                    {{ x.text }}
+                </li> -->
+
+                <div v-for="x in swiper_list" class="swiper-slide color-1" :id=x.swiper_id>
+                    <div class="col-12 h-100 column remove-margin-padding overflow-hidden" :id=x.wrapper_id>
+                        <div v-bind:data-background="x.imgSrc" v-on:click="sendData(x.imageId_classname)" data-columns="first" class="with-gradient Backgroundimage img-bg-props swiper-lazy h-100" :class=x.imageId_classname :id=x.imageId_classname>
+                            <!-- <div data-background="img/seoul.jpeg" data-columns="first" class="Backgroundimage img-bg-props bg1 swiper-lazy h-100" id="bg1"> -->
+                            <div class="swiper-lazy-preloader"></div>
+                        </div>
+                        <div class="slide-text position-absolute">
+                            <h1 id="textId" class="textId">{{ x.header }}</h1>
+                            <!-- <h1>Seoul</h1> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <infocontent-template inline-template :project="selectedId">
+            <div class="slideContainer" v-show="project">
+                <!-- <h1 class="text-dark">{{ projectTitle }}</h1>
+                <h1 class="text-dark">{{ imgData }}</h1> -->
+                <!-- <h1 class="text-dark">{{ getUpdatedImgData }}</h1> -->
+                <!-- <h1 class="text-dark">{{ imgData }}</h1> -->
+                <section class="text-dark position-absolute remove-margin-padding infoSection">
+                    <div class="row h-100 w-100 remove-margin-padding infoSectionRow overflow-hidden">
+                        <div class="infoSectionImageWrapper remove-margin-padding  position-relative overflow-hidden">
+                            <div class="remove-margin-padding" id="infoSlideBackgroundimage">
+                                <button type="button" class="close position-absolute close-button" aria-label="Close" v-on:click="greet">
+                                                            <span aria-hidden="true">&times;</span>
+                                                          </button>
+                            </div>
+                            <div class="slide-text position-absolute">
+                                <!-- <h1>Seoul</h1> -->
+                                <h1 id="textId" class="textId">{{ projectTitle }}</h1>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="container contentHeroImageContainer">
+                        <div class="py-5">
+                            <div class="col-xs-12 col-md-6 m-auto text-center my-5  contentHeroImage">
+                                <img src="img/heroContentImageTest.jpg" alt="" class=" thumbnail img-fluid">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Test section -->
+                    <section class="test">
+                        <div class="container">
+                            <div class="row ">
+                                <div class="col-lg-6 h-100 gridA text px-0  text-white p-5">
+                                    <h1 class="outline py-2">Lorem ipsum dolor sit amet..</h1>
+                                    <h3 class="subtitle py-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit</h3>
+                                    <p class="short_dsv py-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia quibusdam ipsum aliquam fugiat quos aspernatur hic iusto voluptatum consequuntur consectetur.</p>
+                                </div>
+                                <div class="col-lg-6 gridB px-0 text-white p-5">
+
+                                    <img src="img/heroContentImageTest.jpg" alt="" class="img-fluid">
+
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 p-5 bg-info pushUp gridC">
+                                    <img src="img/heroContentImageTest.jpg" alt="" class="img-fluid">
+                                </div>
+                                <div class="col-lg-6 bg-info p-5 h-100 text gridD">
+                                    <h1 class="outline py-2">Lorem ipsum dolor sit amet..</h1>
+                                    <h3 class="subtitle py-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit</h3>
+                                    <p class="short_dsv py-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia quibusdam ipsum aliquam fugiat quos aspernatur hic iusto voluptatum consequuntur consectetur.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+                    <!-- Gallery -->
+                    <section class="py-5 my-5" id="gallery">
+                        <div class="position-relative container m-auto" id="js-scene" style="top: 0;width: 100%;max-width: 1140px;" data-pointer-events="true">
+                            <!-- <div class="" style="" data-depth="0.2" data-pointer-events="true"> -->
+                            <div class="row" data-depth="0.2">
+                                <div class="col-md-4 col-sm-6 imageWrapper">
+                                    <div class="items__layer layer" data-depth="0.85">
+                                        <img src="https://images.unsplash.com/photo-1558980664-2cd663cf8dde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="" class="position-relative items__item1 img-fluid">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 imageWrapper">
+                                    <div class="items__layer layer" data-depth="0.70">
+                                        <img src="https://images.unsplash.com/photo-1573196873002-2b921759d9ca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="" class="position-relative items__item2 img-fluid">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 imageWrapper">
+                                    <div class="items__layer layer" data-depth="0.80">
+                                        <img src="https://images.unsplash.com/photo-1573227492309-db5faf9a8562?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="" data-title="no.3" class="position-relative items__item3 img-fluid">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 imageWrapper">
+                                    <div class="items__layer layer" data-depth="0.85">
+                                        <img src="https://images.unsplash.com/photo-1573225935973-40b81f6e39e6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="" data-title="no.4" class="position-relative items__item4 img-fluid">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 imageWrapper">
+                                    <div class="items__layer layer" data-depth="0.99" data-pointer-events="true">
+                                        <img src="https://images.unsplash.com/photo-1573248302981-fc7ed073a1e0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="" data-title="no.5" class=" position-relative items__item5 img-fluid">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- </div> -->
+                        </div>
+                    </section>
+
+                    <!-- <div id="trigger" class="">
+                        <div class="container-fluid pinMe">
+                            <div class="row">
+                                <div class="col-md-4 ">
+                                    <img src="https://images.unsplash.com/photo-1558980664-2cd663cf8dde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="" class="position-relative img-fluid">
+                                </div>
+                                <div class="col-md-4 ">
+                                    <img src="https://images.unsplash.com/photo-1573196873002-2b921759d9ca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="" class="position-relative img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="container carousel-container1 overflow-hidden m-auto py-5 position-relative">
+                        <div class="col-10 m-auto mt-0 p-2">
+                            <div id="carousel1" class="carousel slide " data-ride="carousel">
+                                <div class="carousel-inner  carousel-inner1 ">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" src="img/airplane.jpg" alt="Second slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src="img/granc_c2.jpg" alt="Third slide">
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#carousel1" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carousel1" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="app">
+                            <main class="main">
+                                <div class="section" id="vienna" data-section>
+                                    <div class="section__header" style="background-image: url('https://lonelyplanetimages.imgix.net/mastheads/stock-photo-st-stephens-church-112868985.jpg?sharp=10&w=2000');">
+                                        <div class="section__controls">
+                                            <button class="btn btn--prev" title="Previous">
+                                          <span class="arrow arrow--left"></span>
+                                        </button>
+                                            <button class="btn btn--next" title="Next">
+                                          <span class="arrow arrow--right"></span>
+                                        </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </main>
+                        </div> -->
+
+                    <div class="row p-5">
+                        <div class="col-sm-6">
+                            <h1 class="">{{ projectTitle }}</h1>
+                            Project Details
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas aut dignissimos omnis fugiat temporibus nisi corrupti dolorem optio aliquid neque ea consequatur exercitationem, obcaecati doloremque ratione cum quidem officiis
+                                dolorum expedita distinctio! Cumque animi repellat eos qui at quisquam soluta itaque impedit dolorum, praesentium dicta explicabo magni ipsa tenetur veritatis libero eveniet reprehenderit voluptas expedita voluptates provident,
+                                porro fugiat earum. Alias, quo eaque? Obcaecati, dignissimos ab, quo, cupiditate enim nemo atque consequatur corporis ratione est vitae doloribus! Laboriosam et explicabo reprehenderit harum soluta adipisci illum, dignissimos
+                                deserunt optio eveniet laborum aut eum neque nemo, pariatur sunt. Rerum, eius! Reprehenderit necessitatibus quisquam, eveniet quod non in enim, voluptates fuga fugiat magnam quibusdam optio commodi vel sequi facere pariatur?
+                                Modi quis cum delectus, error ea molestiae eveniet nemo. Ab adipisci vel illo dicta expedita voluptatum quos omnis cumque soluta reiciendis reprehenderit debitis modi, incidunt dolorum nihil quo est quasi quod sint, deserunt
+                                ducimus neque dignissimos hic doloremque. Temporibus ullam ducimus quidem! Eum, ipsum? Repellendus officia cupiditate sunt temporibus, numquam delectus earum iure natus hic vero. Error doloribus dolores voluptatibus quidem
+                                exercitationem consequun il ipsum quas modi quos a consequatur temporibus vero cumque cupiditate et similique saepe tempore molestias? Cum ratione ducimus delectus, eligendi, recusandae assumenda accusamus quos, qui id
+                                fuga labore! Voluptates nemo, temporibus, unde cupiditate quam repellat eum nesciunt enim eos ipsum sequi! Repudiandae facilis tempore facere quaerat modi recusandae eligendi quas dicta aut deserunt blanditiis totam nesciunt,
+                                odit voluptate earum, quia qui animi, sapiente fuga eveniet mollitia eos exercitationem! Ipsa commodi minus velit, laboriosam voluptatum tenetur iste magnam modi unde exercitationem nobis amet corporis, aliquid recusandae
+                                autem explicabo molestiae, sint itaque voluptate. Ut, tempore laborum, eos vero quisquam nisi saepe culpa tempora fugit error veniam fugiat doloremque tenetur quam, optio libero. Laborum maiores, iusto delectus error sint
+                                neque voluptates possimus nemo consequatur, nihil consequuntur beatae eos ducimus excepturi id minima vero.</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas aut dignissimos omnis fugiat temporibus nisi corrupti dolorem optio aliquid neque ea consequatur exercitationem, obcaecati doloremque ratione cum quidem officiis
+                                dolorum expedita distinctio! Cumque animi repellat eos qui at quisquam soluta itaque impedit dolorum, praesentium dicta explicabo magni ipsa tenetur veritatis libero eveniet reprehenderit voluptas expedita voluptates provident,
+                                porro fugiat earum. Alias, quo eaque? Obcaecati, dignissimos ab, quo, cupiditate enim nemo atque consequatur corporis ratione est vitae doloribus! Laboriosam et explicabo reprehenderit harum soluta adipisci illum, dignissimos
+                                deserunt optio eveniet eniet mollitia eos exercitationem! Ipsa commodi minus velit, laboriosam voluptatum tenetur iste magnam modi unde exercitationem nobis amet corporis, aliquid recusandae autem explicabo molestiae, sint
+                                itaque voluptate. Ut, tempore laborum, eos vero quisquam nisi saepe culpa tempora fugit error veniam fugiat doloremque tenetur quam, optio libero. Laborum maiores, iusto delectus error sint neque voluptates possimus nemo
+                                consequatur, nihil consequuntur beatae eos ducimus excepturi id minima vero.</p>
+                        </div>
+                        <div class="col-sm-4"></div>
+                    </div>
+                    <div class="container carousel-container2 overflow-hidden m-auto py-5 position-relative">
+                        <div class="col-10 m-auto mt-0 pt-0">
+                            <div id="carousel2" class="carousel slide py-4 m-auto" data-ride="carousel">
+                                <div class="carousel-inner carousel-inner2">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" src="img/airplane.jpg" alt="Second slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src="img/granc_c2.jpg" alt="Third slide">
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#carousel2" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carousel2" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="div-left"></div>
+                        <div class="div-right"></div>
+                    </div>
+
+
+                    <div class="row p-5">
+                        <div class="col-sm-6">
+                            <h1 class="">{{ projectTitle }}</h1>
+                            Project Details
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas aut dignissimos omnis fugiat temporibus nisi corrupti dolorem optio aliquid neque ea consequatur exercitationem, obcaecati doloremque ratione cum quidem officiis
+                                dolorum expedita distinctio! Cumque animi repellat eos qui at quisquam soluta itaque impedit dolorum, praesentium dicta explicabo magni ipsa tenetur veritatis libero eveniet reprehenderit voluptas expedita voluptates provident,
+                                porro fugiat earum. Alias, quo eaque? Obcaecati, dignissimos ab, quo, cupiditate enim nemo atque consequatur corporis ratione est vitae doloribus! Laboriosam et explicabo reprehenderit harum soluta adipisci illum, dignissimos
+                                deserunt optio eveniet laborum aut eum neque nemo, pariatur sunt. Rerum, eius! Reprehenderit necessitatibus quisquam, eveniet quod non in enim, voluptates fuga fugiat magnam quibusdam optio commodi vel sequi facere pariatur?
+                                Modi quis cum delectus, error ea molestiae eveniet nemo. Ab adipisci vel illo dicta expedita voluptatum quos omnis cumque soluta reiciendis reprehenderit debitis modi, incidunt dolorum nihil quo est quasi quod sint, deserunt
+                                ducimus neque dignissimos hic doloremque. Temporibus ullam ducimus quidem! Eum, ipsum? Repellendus officia cupiditate sunt temporibus, numquam delectus earum iure natus hic vero. Error doloribus dolores voluptatibus quidem
+                                exercitationem consequun il ipsum quas modi quos a consequatur temporibus vero cumque cupiditate et similique saepe tempore molestias? Cum ratione ducimus delectus, eligendi, recusandae assumenda accusamus quos, qui id
+                                fuga labore! Voluptates nemo, temporibus, unde cupiditate quam repellat eum nesciunt enim eos ipsum sequi! Repudiandae facilis tempore facere quaerat modi recusandae eligendi quas dicta aut deserunt blanditiis totam nesciunt,
+                                odit voluptate earum, quia qui animi, sapiente fuga eveniet mollitia eos exercitationem! Ipsa commodi minus velit, laboriosam voluptatum tenetur iste magnam modi unde exercitationem nobis amet corporis, aliquid recusandae
+                                autem explicabo molestiae, sint itaque voluptate. Ut, tempore laborum, eos vero quisquam nisi saepe culpa tempora fugit error veniam fugiat doloremque tenetur quam, optio libero. Laborum maiores, iusto delectus error sint
+                                neque voluptates possimus nemo consequatur, nihil consequuntur beatae eos ducimus excepturi id minima vero.</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas aut dignissimos omnis fugiat temporibus nisi corrupti dolorem optio aliquid neque ea consequatur exercitationem, obcaecati doloremque ratione cum quidem officiis
+                                dolorum expedita distinctio! Cumque animi repellat eos qui at quisquam soluta itaque impedit dolorum, praesentium dicta explicabo magni ipsa tenetur veritatis libero eveniet reprehenderit voluptas expedita voluptates provident,
+                                porro fugiat earum. Alias, quo eaque? Obcaecati, dignissimos ab, quo, cupiditate enim nemo atque consequatur corporis ratione est vitae doloribus! Laboriosam et explicabo reprehenderit harum soluta adipisci illum, dignissimos
+                                deserunt optio eveniet eniet mollitia eos exercitationem! Ipsa commodi minus velit, laboriosam voluptatum tenetur iste magnam modi unde exercitationem nobis amet corporis, aliquid recusandae autem explicabo molestiae, sint
+                                itaque voluptate. Ut, tempore laborum, eos vero quisquam nisi saepe culpa tempora fugit error veniam fugiat doloremque tenetur quam, optio libero. Laborum maiores, iusto delectus error sint neque voluptates possimus nemo
+                                consequatur, nihil consequuntur beatae eos ducimus excepturi id minima vero.</p>
+                        </div>
+                        <div class="col-sm-4"></div>
+                    </div>
+                </section>
+            </div>
+        </infocontent-template>
+
+    </div>
+    <!-- <div class="swiper-container"> -->
+    <!-- <div class="swiper-wrapper hero"> -->
+    <!-- <div class="swiper-slide color-1" id="swiper-slide-1">
+                <div class="col-12 column remove-margin-padding overflow-hidden" id="wrapper1">
+                    <div data-background="img/seoul.jpeg" data-columns="first" class="Backgroundimage img-bg-props bg1 swiper-lazy h-100" id="bg1">
+                        <div class="swiper-lazy-preloader"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide color-2" id="swiper-slide-2">
+                <div class="col-12 column remove-margin-padding overflow-hidden" id="wrapper2">
+                    <div data-background="img/ny_city.jpeg" data-columns="second" class="Backgroundimage img-bg-props bg2 swiper-lazy h-100" id="bg2">
+                        <div class="swiper-lazy-preloader"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide color-3" id="swiper-slide-3">
+                <div class="col-12 column remove-margin-padding overflow-hidden" id="wrapper3">
+                    <div data-background="img/france.jpeg" data-columns="third" class="Backgroundimage img-bg-props bg3 swiper-lazy h-100" id="bg3">
+                        <div class="swiper-lazy-preloader"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide color-4" id="swiper-slide-4">
+                <div class="col-12 column remove-margin-padding overflow-hidden" id="wrapper4">
+                    <div data-background="img/airplane.jpeg" data-columns="first" class="Backgroundimage img-bg-props bg4 swiper-lazy h-100" id="bg4">
+                        <div class="swiper-lazy-preloader"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide color-5" id="swiper-slide-5">
+                <div class="col-12 column remove-margin-padding overflow-hidden" id="wrapper5">
+                    <div data-background="img/granc_c.jpeg" data-columns="second" class="Backgroundimage img-bg-props bg5 swiper-lazy h-100" id="bg5">
+                        <div class="swiper-lazy-preloader"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide color-6" id="swiper-slide-6">
+                <div class="col-12 column remove-margin-padding overflow-hidden" id="wrapper6">
+                    <div data-background="img/nike.jpeg" data-columns="third" class="Backgroundimage img-bg-props bg6 swiper-lazy h-100" id="bg6">
+                        <div class="swiper-lazy-preloader"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide color-5" id="swiper-slide-7">
+                <div class="col-12 column remove-margin-padding overflow-hidden" id="wrapper7">
+                    <div data-background="img/granc_c.jpeg" data-columns="second" class="Backgroundimage img-bg-props bg5 swiper-lazy h-100" id="bg7">
+                        <div class="swiper-lazy-preloader"></div>
+                    </div>
+                </div>
+            </div> -->
+    <!-- <div class="swiper-slide color-2">
+
+            </div>
+            <div class="swiper-slide color-3">
+
+            </div>
+            <div class="swiper-slide color-4">
+
+            </div>
+            <div class="swiper-slide color-5">
+
+            </div> -->
+    <!-- </div> -->
+    <!-- Add Pagination -->
+    <!-- <div class="swiper-pagination"></div> -->
+    <!-- </div> -->
+
+    <!-- <div class="main">
+        <section class="hero remove-margin-padding">
+            <div class="row h-100 remove-margin-padding overflow-hidden">
+                <div class="col-md-4 column remove-margin-padding overflow-hidden" id="tempId1">
+                    <div data-columns="first" class="Backgroundimage img-bg-props bg1 h-100" id="bg1"></div>
+                </div>
+                <div class="col-md-4 column remove-margin-padding overflow-hidden" id="tempId2">
+                    <div data-columns="second" class="Backgroundimage img-bg-props bg2 h-100" id="bg2"></div>
+                </div>
+                <div class="col-md-4 column remove-margin-padding overflow-hidden" id="tempId3">
+                    <div data-columns="third" class="Backgroundimage img-bg-props bg3 h-100" id="bg3"></div>
+                </div>
+            </div>
+
+        </section>
+        <section class="hero">
+            <div class="row h-100">
+                <div class="col-sm-4 column remove-margin-padding overflow-hidden" id="tempId4">
+                    <div data-columns="first" class="Backgroundimage img-bg-props bg4 h-100" id="bg4"></div>
+                </div>
+                <div class="col-sm-4 column remove-margin-padding overflow-hidden" id="tempId5">
+                    <div data-columns="second" class="Backgroundimage img-bg-props bg5 h-100" id="bg5"></div>
+                </div>
+                <div class="col-sm-4 column remove-margin-padding overflow-hidden" id="tempId6">
+                    <div data-columns="third" class="Backgroundimage img-bg-props bg6 h-100" id="bg6"></div>
+                </div>
+            </div>
+
+        </section>
+    </div> -->
+
+
+</body>
+<!-- GSAP Animation JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/onepage-scroll/1.3.1/jquery.onepage-scroll.js"></script> -->
+<!-- <script src="js/one_page_scroll.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/simple-parallax-js@5.0.2/dist/simpleParallax.min.js"></script> -->
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.0/js/swiper.min.js'></script>
+<!-- {Parallax JS} -->
+<script src="js/parallax.min.js"></script>
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/parallax/2.1.3/parallax.min.js'></script> -->
+<!-- { Scroll Magic } -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.gsap.min.js"></script>
+<!-- { Vibrant JS } -->
+<script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.4/dist/vibrant.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.10.0/rellax.min.js"></script> -->
+<!-- Importing Vue Js -->
+<script src="https://unpkg.com/vue"></script>
+<script src="https://unpkg.com/vuex@3.1.0/dist/vuex.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
+<script src="js/data_vuex.js"></script>
+<!-- <script src="js/app.js"></script> -->
+
+<!-- <script src="js/app.js"></script> -->
+
+<script src="js/InfoComp.js"></script>
+<script src="js/infocontent.js"></script>
+
+<!-- Importat Vue instance run first as it holds swiper src -->
+<script src="js/vue_app.js"></script>
+
+<script src="js/app.js"></script>
+<script src="js/swiper_config.js"></script>
+
+<script type="text/javascript">
+    // var swiper = new Swiper('.swiper-container', {
+    //     slidesPerView: 3,
+    //     spaceBetween: 0,
+    //     mousewheelControl: true,
+    //     freeMode: true,
+    //     // grabCursor: true,
+    //     // speed: 900,
+    //     direction: 'horizontal',
+    //     parallax: true,
+    //     preloadImages: false,
+    //     lazyLoading: true,
+    //     // direction: 'vertical',
+    //     lazy: {
+    //         loadPrevNext: true,
+    //         loadPrevNextAmount: 3
+    //     },
+    //     pagination: {
+    //         el: '.swiper-pagination',
+    //         clickable: true,
+    //     },
+    //     mousewheel: {
+    //         sensitivity: true,
+    //     },
+    //     keyboard: {
+    //         enabled: true,
+    //         onlyInViewport: false,
+    //     },
+    //     breakpoints: {
+    //         640: {
+    //             slidesPerView: 3,
+    //             spaceBetween: 0,
+    //             direction: 'vertical'
+    //         },
+    //         768: {
+    //             slidesPerView: 3,
+    //             direction: 'horizontal',
+    //         },
+    //         1024: {
+    //             slidesPerView: 5,
+    //             direction: 'horizontal',
+    //         },
+    //     }
+    // });
+    // var chosenColumn;
+    // var selectedItemId;
+    // var imgData = {
+    //     "imgHeight": "",
+    //     "imgWidth": "",
+    //     "imgTop": "",
+    //     "imgLeft": "",
+    //     "imgBgPosition": "",
+    //     "imgScale": ""
+    // }
+    // var wrapperId, swiper_slider_id;
+    // var firstThree, nextThree;
+    // document.addEventListener("DOMContentLoaded", function(event) {
+    //     // Your code to run since DOM is loaded and ready
+    //     var image = document.getElementsByClassName('bg1');
+    //     $img = $("body").find('.hero .img-bg-props');
+    //     // var imgData = {
+    //     //     imgHeight,
+    //     //     imgWidth,
+    //     //     imgLeft,
+    //     //     imgBgPosition
+    //     // };
+
+    //     $('.Backgroundimage').each(function() {
+    //         console.log(this);
+    //         $('#' + this.id).on('click', function() {
+    //             console.log(this);
+
+    //             // $(".main").disable();
+    //             // $(".onepage-pagination").css({
+    //             //     "opacity": 0
+    //             // })
+    //             chosenColumn = document.querySelector("#" + this.id);
+    //             chosenColumn = chosenColumn.dataset.columns;
+    //             chosenColumn = $("#" + this.id).attr("data-columns");
+    //             selectedItemId = this.id;
+    //             console.log($("#" + this.id).attr("data-columns"));
+    //             // console.log(article.dataset.columns);
+    //             // console.log("Clcked", $(this))
+    //             // console.log(this.id, $('#' + this.id).css("background-image"));
+    //             // console.log($("#" + this.id).prev(), $("#" + this.id).prev().prevObject.attr('id'))
+    //             wrapperId = document.getElementById(this.id).parentNode.id;
+    //             console.log(wrapperId)
+    //             swiper_slider_id = document.getElementById(wrapperId).parentNode.id; //Get the swiper-slide-id and move the next two element
+    //             console.log(swiper_slider_id)
+    //             var imgSrc = $('#' + this.id).css("background-image");
+    //             // var src = imgSrc.match(/"([^]+)"/)[1]
+    //             // console.log(src);
+    //             $("#infoSlideBackgroundimage").css({
+    //                 "background-image": $('#' + this.id).css("background-image")
+    //             })
+    //             console.log($('#' + this.id).height(), $('#' + this.id).width(), $('#' + swiper_slider_id).width())
+    //             imgData.imgHeight = $('#' + this.id).height();
+    //             imgData.imgWidth = $('#' + swiper_slider_id).width();
+    //             imgData.imgLeft = $(document.getElementById(swiper_slider_id)).offset().left;
+    //             imgData.imgTop = $(document.getElementById(swiper_slider_id)).offset().top;
+    //             console.log($(document.getElementById(swiper_slider_id)).offset().left)
+    //             imgData.imgBgPosition = $('#' + this.id).css("background-position");
+    //             imgData.imgScale = document.getElementById(this.id).getBoundingClientRect().width / document.getElementById(this.id).offsetWidth;
+    //             console.log(imgData.imgHeight + " , " + imgData.imgLeft)
+
+    //             console.log($(document.getElementById(this.id)).offset().left)
+    //             var tl0 = new TimelineMax();
+    //             tl0.set('#infoSlideBackgroundimage', {
+    //                 height: $('#' + swiper_slider_id).height() + 'px',
+    //                 width: ($('#' + swiper_slider_id).width()) + 'px',
+    //                 // left: $(document.getElementById(swiper_slider_id)).offset().left + "px",
+    //                 backgroundPosition: $('#' + this.id).css("background-position"),
+    //                 scale: imgData.imgScale,
+
+    //             })
+    //             tl0.set(".infoSectionImageWrapper", {
+    //                 width: $('#' + swiper_slider_id).width() + 'px',
+    //                 height: $('#' + swiper_slider_id).height() + 'px',
+    //                 left: imgData.imgLeft + "px",
+    //                 top: imgData.imgTop + "px",
+
+    //             })
+    //             var swiperIds = [];
+    //             swiperIds[3] = swiper_slider_id;
+    //             console.log(swiperIds)
+
+    //             // Grab all three prev elements
+    //             for (i = 3; i > 0; i--) {
+    //                 console.log(i);
+    //                 if ($('#' + swiperIds[i]).prev().attr("id") != undefined) {
+    //                     //  console.log($('#' + swiperIds[i]).prev().attr("id"))
+    //                     var tempHolder = $('#' + swiperIds[i]).prev().attr("id");
+    //                     i--;
+    //                     swiperIds[i] = tempHolder;
+    //                     i++;
+    //                 } else {
+    //                     i--;
+    //                     swiperIds[i] = undefined;
+    //                     i++;
+    //                 }
+    //             }
+    //             // console.log(swiperIds)
+    //             // Grab all three next elements
+    //             for (i = 3; i < 6; i++) {
+    //                 console.log(i);
+    //                 if ($('#' + swiperIds[i]).next().attr("id") != undefined) {
+    //                     //  console.log($('#' + swiperIds[i]).prev().attr("id"))
+    //                     var tempHolder = $('#' + swiperIds[i]).next().attr("id");
+    //                     i++;
+    //                     swiperIds[i] = tempHolder;
+    //                     i--;
+    //                 } else {
+    //                     i++;
+    //                     swiperIds[i] = undefined;
+    //                     i--;
+    //                 }
+    //             }
+    //             // console.log(swiperIds)
+    //             firstThree = swiperIds.slice(0, 3);
+    //             nextThree = swiperIds.slice(4);
+    //             // console.log(firstThree);
+    //             // console.log(nextThree[0]);
+    //             for (i = 0; i < nextThree.length; i++) {
+    //                 tl0.to('#' + nextThree[i], 1, {
+    //                     duration: 2.5,
+    //                     ease: Expo.easeInOut,
+    //                     x: "200%"
+    //                 }, "-=1")
+    //             }
+    //             for (i = 0; i < firstThree.length; i++) {
+    //                 tl0.to('#' + firstThree[i], 1, {
+    //                     duration: 2.5,
+    //                     ease: Expo.easeInOut,
+    //                     x: "-200%"
+    //                 }, "-=1")
+    //             }
+    //             // switch (chosenColumn) {
+
+    //             //     case "first":
+    //             //         // var secondEleId = $('#' + this.id).parent().next().attr("id");
+    //             //         // var thirdEleId = $('#' + secondEleId).next().attr("id");
+    //             //         var secondEleId = $('#' + swiper_slider_id).next().attr("id")
+    //             //         var thirdEleId = $('#' + secondEleId).next().attr("id");
+
+    //             //         tl0.to('#' + firstThree[0] + " , #" + firstThree[1], " , #" + firstThree[2], 1, {
+    //             //             duration: 2.5,
+    //             //             ease: Expo.easeInOut,
+    //             //             x: "200%"
+    //             //         }, "-=1")
+    //             //         break;
+    //             //     case "second":
+    //             //         // var firstEleId = $("#" + $('#' + this.id).parent().attr("id")).prev().attr("id");
+    //             //         // var thirdEleId = $("#" + $('#' + this.id).parent().attr("id")).next().attr("id");
+    //             //         var firstEleId = $('#' + swiper_slider_id).prev().attr("id");
+    //             //         var thirdEleId = $('#' + swiper_slider_id).next().attr("id")
+    //             //         console.log(firstEleId, thirdEleId)
+
+    //             //         tl0.to('#' + firstEleId, 1, {
+    //             //             duration: 2.5,
+    //             //             ease: Expo.easeInOut,
+    //             //             x: "-100%"
+    //             //         })
+    //             //         tl0.to('#' + thirdEleId, 1, {
+    //             //             duration: 2.5,
+    //             //             ease: Expo.easeInOut,
+    //             //             x: "100%"
+    //             //         }, "-=1")
+    //             //         break;
+    //             //     case "third":
+    //             //         // var secondEleId = $("#" + $('#' + this.id).parent().attr("id")).prev().attr("id");
+    //             //         // var firstEleId = $('#' + secondEleId).prev().attr("id");
+    //             //         var secondEleId = $('#' + swiper_slider_id).prev().attr("id")
+    //             //         var firstEleId = $('#' + secondEleId).prev().attr("id");
+    //             //         console.log(secondEleId, firstEleId)
+
+    //             //         tl0.to('#' + secondEleId + " , #" + firstEleId, 1, {
+    //             //             duration: 2.5,
+    //             //             ease: Expo.easeInOut,
+    //             //             x: "-200%"
+    //             //         }, "-=1")
+    //             //         break;
+    //             // }
+    //             tl0.to('#infoSlideBackgroundimage , .infoSectionImageWrapper', 1, {
+    //                 duration: 2,
+    //                 ease: Expo.easeInOut,
+    //                 height: "100vh",
+    //                 width: "100%",
+    //                 left: "0px",
+    //                 top: "0px",
+    //                 // scale: 1.1,
+    //                 backgroundPosition: $('#' + this.id).css("background-position"),
+    //                 scale: 1
+    //             }, "-=1")
+    //             tl0.to('.infoSection', 0, {
+    //                 opacity: 1,
+    //                 zIndex: 1
+    //             }, "-=1")
+    //             tl0.set('.hero', {
+    //                 opacity: 0,
+    //                 zIndex: -1
+    //             })
+    //         });
+    //     });
+
+    //     $('.close-button').on('click', function() {
+    //         var tl0 = new TimelineMax();
+    //         // console.log(imgData.imgHeight.imgData.imgLeft)
+    //         console.log("Close button", ($('#' + selectedItemId).width()) + 'px');
+    //         tl0.set('.hero', {
+    //             opacity: 1,
+    //             zIndex: 1
+    //         })
+    //         tl0.to(".infoSectionImageWrapper", 1, {
+    //             duration: 2,
+    //             ease: Expo.easeInOut,
+    //             width: $('#' + selectedItemId).width() + 'px',
+    //             height: $('#' + swiper_slider_id).height() + 'px',
+    //             left: imgData.imgLeft + "px",
+    //             top: imgData.imgTop + "px",
+
+    //         }, "-=1")
+    //         tl0.to('#infoSlideBackgroundimage', 1, {
+    //             duration: 2,
+    //             ease: Expo.easeInOut,
+    //             backgroundPosition: imgData.imgBgPosition,
+    //             height: $('#' + selectedItemId).height() + 'px',
+    //             // top: imgData.imgTop + "px",
+    //             scale: imgData.imgScale
+    //         }, "-=1")
+    //         for (i = 0; i < nextThree.length; i++) {
+    //             tl0.to('#' + nextThree[i], 1, {
+    //                 duration: 2.5,
+    //                 ease: Expo.easeInOut,
+    //                 x: "0%"
+    //             }, "-=1")
+    //         }
+    //         for (i = 0; i < firstThree.length; i++) {
+    //             tl0.to('#' + firstThree[i], 1, {
+    //                 duration: 2.5,
+    //                 ease: Expo.easeInOut,
+    //                 x: "0%"
+    //             }, "-=1")
+    //         }
+
+    //         // switch (chosenColumn) {
+    //         //     case "first":
+    //         //         var secondEleId = $('#' + selectedItemId).parent().next().attr("id");
+    //         //         var thirdEleId = $('#' + secondEleId).next().attr("id");
+    //         //         tl0.to(".infoSectionImageWrapper", 1, {
+    //         //             duration: 2,
+    //         //             ease: Expo.easeInOut,
+    //         //             width: $('#' + selectedItemId).width() + 'px',
+    //         //         }, "-=1")
+    //         //         tl0.to('#infoSlideBackgroundimage', 1, {
+    //         //             duration: 2,
+    //         //             ease: Expo.easeInOut,
+    //         //             width: $('#' + selectedItemId).width() + 'px',
+    //         //             left: imgData.imgLeft + "px",
+    //         //             backgroundPosition: imgData.imgBgPosition,
+    //         //             scale: imgData.imgScale
+    //         //         }, "-=1");
+
+
+    //         //         tl0.to('#' + secondEleId + " , #" + thirdEleId, 1, {
+    //         //             duration: 2,
+    //         //             ease: Expo.easeInOut,
+    //         //             x: "0%"
+    //         //         }, "-=1")
+    //         //         break;
+    //         //     case "second":
+    //         //         var firstEleId = $("#" + $('#' + selectedItemId).parent().attr("id")).prev().attr("id");
+    //         //         var thirdEleId = $("#" + $('#' + selectedItemId).parent().attr("id")).next().attr("id");
+    //         //         tl0.to(".infoSectionImageWrapper", 1, {
+    //         //             duration: 2,
+    //         //             ease: Expo.easeInOut,
+    //         //             width: $('#' + selectedItemId).width() + 'px',
+    //         //             left: imgData.imgLeft + "px"
+    //         //         }, "-=1")
+    //         //         tl0.to('#infoSlideBackgroundimage', 1, {
+    //         //             duration: 2,
+    //         //             ease: Expo.easeInOut,
+    //         //             backgroundPosition: imgData.imgBgPosition,
+    //         //             scale: imgData.imgScale
+    //         //         }, "-=1")
+
+    //         //         tl0.to('#' + firstEleId, 1, {
+    //         //             duration: 2,
+    //         //             ease: Expo.easeInOut,
+    //         //             x: "0%"
+    //         //         }, "-=1")
+    //         //         tl0.to('#' + thirdEleId, 1, {
+    //         //             duration: 2,
+    //         //             ease: Expo.easeInOut,
+    //         //             x: "0%"
+    //         //         }, "-=1")
+    //         //         break;
+    //         //     case "third":
+    //         //         var secondEleId = $("#" + $('#' + selectedItemId).parent().attr("id")).prev().attr("id");
+    //         //         var firstEleId = $('#' + secondEleId).prev().attr("id");
+    //         //         tl0.to('#infoSlideBackgroundimage', 1, {
+    //         //             duration: 2,
+    //         //             ease: Expo.easeInOut,
+    //         //             backgroundPosition: imgData.imgBgPosition,
+    //         //             scale: imgData.imgScale
+    //         //         }, "-=1")
+    //         //         tl0.to(".infoSectionImageWrapper", 1, {
+    //         //             duration: 2,
+    //         //             ease: Expo.easeInOut,
+    //         //             width: $('#' + selectedItemId).width() + 'px',
+    //         //             left: imgData.imgLeft + "px"
+    //         //         }, "-=1")
+    //         //         tl0.to('#' + secondEleId + ', #' + firstEleId, 1, {
+    //         //             duration: 2,
+    //         //             ease: Expo.easeInOut,
+    //         //             x: "0%"
+    //         //         }, "-=1")
+    //         //         break;
+    //         // }
+    //         tl0.set('.infoSection', {
+    //             opacity: 0,
+    //             zIndex: -1
+    //         })
+    //         $(".onepage-pagination").css({
+    //             "opacity": 1
+    //         })
+    //         imgData = {
+    //             "imgHeight": "",
+    //             "imgWidth": "",
+    //             "imgTop": "",
+    //             "imgLeft": "",
+    //             "imgBgPosition": "",
+    //             "imgScale": ""
+    //         }
+    //     })
+    // });
+
+    // $(".main").onepage_scroll({
+    //     sectionContainer: ".hero", // sectionContainer accepts any kind of selector in case you don't want to use section
+    //     easing: "ease", // Easing options accepts the CSS3 easing animation such "ease", "linear", "ease-in",
+    //     // "ease-out", "ease-in-out", or even cubic bezier value such as "cubic-bezier(0.175, 0.885, 0.420, 1.310)"
+    //     animationTime: 1000, // AnimationTime let you define how long each section takes to animate
+    //     pagination: true, // You can either show or hide the pagination. Toggle true for show, false for hide.
+    //     updateURL: false, // Toggle this true if you want the URL to be updated automatically when the user scroll to each page.
+    //     beforeMove: function(index) {}, // This option accepts a callback function. The function will be called before the page moves.
+    //     afterMove: function(index) {}, // This option accepts a callback function. The function will be called after the page moves.
+    //     loop: false, // You can have the page loop back to the top/bottom when the user navigates at up/down on the first/last page.
+    //     keyboard: true, // You can activate the keyboard controls
+    //     responsiveFallback: false, // You can fallback to normal page scroll by defining the width of the browser in which
+    //     // you want the responsive fallback to be triggered. For example, set this to 600 and whenever
+    //     // the browser's width is less than 600, the fallback will kick in.
+    //     direction: "horizontal" // You can now define the direction of the One Page Scroll animation. Options available are "vertical" and "horizontal". The default value is "vertical".  
+    // });
+</script>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div id="app-5">
+    <p>{{ message }}</p>
+    <button v-on:click="reverseMessage">Reverse Message</button>
+</div>
+
+<div id="app-6">
+    <p>{{ message }}</p>
+    <input v-model="message">
+</div>
+
+<div id="app">
+    <ul>
+        <li v-for="x in todos">
+            {{ x.text }}
+        </li>
+    </ul>
+</div> -->
+
+<!-- <script>
+    var app5 = new Vue({
+        el: '#app-5',
+        data: {
+            message: 'Hello Vue.js!'
+        },
+        methods: {
+            reverseMessage: function() {
+                this.message = this.message.split('').reverse().join('')
+            }
+        }
+    })
+    var app6 = new Vue({
+        el: '#app-6',
+        data: {
+            message: 'Hello Vue!'
+        }
+    })
+</script> -->

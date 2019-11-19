@@ -42,9 +42,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     function resizeContents() {
         if (window.innerWidth >= 992) {
             // Setting Grid content
-            var marginTop = $(".gridC").innerHeight() - $(".gridA").innerHeight();
+            var marginTop = $(".gridA").innerHeight() - $(".gridB").innerHeight();
             $(".pushUp").css({
-                "margin-top": "-" + marginTop + "px"
+                "margin-top": +marginTop + "px"
             })
         }
         // else if (global_brow_width > 1200) {
