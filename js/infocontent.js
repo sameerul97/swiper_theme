@@ -61,7 +61,7 @@ var myTask = Vue.component('infocontent-template', {
             this.carouselInit();
 
             // Testing this 
-            this.smgInitGallery2();
+            // this.smgInitGallery2();
 
             // Initiate gallery once the project is loaded
             console.log($("#gallery").outerHeight())
@@ -415,18 +415,22 @@ var myTask = Vue.component('infocontent-template', {
                     }, 2000)
                 }
             });
-            tlSceneAction2.to("#gallery2 .imageWrapper:nth-child(1)", 1, {
-                duration: 1,
-                ease: Expo.easeInOut,
+            tlSceneAction2.to("#gallery2 .imageWrapper:nth-child(1)", .1, {
                 left: "0px",
                 top: "0px",
                 height: "auto",
                 padding: "1%"
             });
+            tlSceneAction2.to("#gallery2 .imageWrapper:nth-child(2)", .1, {
+                left: "0px",
+                top: "0px",
+                height: "auto",
+                padding: "1%"
+            }, "-=.1");
 
             var scene0 = new ScrollMagic.Scene({
                     triggerElement: "#gallery2",
-                    triggerHook: ".1",
+                    triggerHook: ".0",
                     duration: "100%"
                 })
                 .setPin("#gallery2")
@@ -456,14 +460,23 @@ var myTask = Vue.component('infocontent-template', {
                 // $(".carousel-inner1").addClass("m-auto")
                 var tlsetScene = new TimelineMax();
                 tlsetScene.set("#carousel1", {
-                    scale: "0.45",
                     opacity: 0.3,
+                    // perspective(525px) translateZ(0px) rotateX(0deg) rotateY(0deg) scale(0.478018, 0.478018);
+                    perspective: 50,
+                    translateZ: 25,
+                    // transform: "translateZ(50px) rotateX(8deg) rotateY(6deg)",
+                    // perspective(525px) translateZ(25px) rotateX(8deg) rotateY(6deg) scale(0.5)
+                    // perspective(525px) rotateX(8deg) rotateY(6deg) scale(0.5)
+                    // translateZ: "25px",
+                    rotationX: 8,
+                    rotationY: 6,
+                    scale: "0.45",
+
                     onCompleteParams: [tlsetScene],
                     onComplete: function() {
                         setTimeout(function() {
                             $("#carousel1").addClass("carousel1TempClass")
                         }, 2000)
-
                     }
                 });
                 tlsetScene.set(".carousel-inner", { boxShadow: "0 20px 20px -20px rgba(69, 44, 44, 0.85)" });
