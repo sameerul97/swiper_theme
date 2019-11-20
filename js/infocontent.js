@@ -462,15 +462,21 @@ var myTask = Vue.component('infocontent-template', {
                 tlsetScene.set("#carousel1", {
                     opacity: 0.3,
                     // perspective(525px) translateZ(0px) rotateX(0deg) rotateY(0deg) scale(0.478018, 0.478018);
-                    perspective: 50,
-                    translateZ: 25,
-                    // transform: "translateZ(50px) rotateX(8deg) rotateY(6deg)",
-                    // perspective(525px) translateZ(25px) rotateX(8deg) rotateY(6deg) scale(0.5)
-                    // perspective(525px) rotateX(8deg) rotateY(6deg) scale(0.5)
-                    // translateZ: "25px",
-                    rotationX: 8,
-                    rotationY: 6,
-                    scale: "0.45",
+                    // perspective: 50,
+                    // translateZ: 25,
+                    // // transform: "translateZ(50px) rotateX(8deg) rotateY(6deg)",
+                    // // perspective(525px) translateZ(25px) rotateX(8deg) rotateY(6deg) scale(0.5)
+                    // // perspective(525px) rotateX(8deg) rotateY(6deg) scale(0.5)
+                    // // translateZ: "25px",
+                    // // perspective(500px) translateZ(-30px) rotateY(8deg) rotateX(6deg)
+                    // rotationX: 8,
+                    // rotationY: 6,
+                    // scale: "0.45",
+
+                    transformPerspective: 2500,
+                    translateZ: 150,
+                    rotationX: 10,
+                    rotationY: 30,
 
                     onCompleteParams: [tlsetScene],
                     onComplete: function() {
@@ -493,6 +499,11 @@ var myTask = Vue.component('infocontent-template', {
                     ease: Linear.easeIn,
                     scale: 1,
                     opacity: 1,
+
+                    // transformPerspective: 0,
+                    translateZ: 0,
+                    rotationX: 0,
+                    rotationY: 0,
                 });
                 tlSceneAction2.to(".carousel-inner", .5, {
                     ease: Linear.easeIn,
