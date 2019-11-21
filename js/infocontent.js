@@ -218,13 +218,28 @@ var myTask = Vue.component('infocontent-template', {
             // Set Scene
             var gridA_Width = $(".gridA").innerWidth();
             var gridA_Height = $(".gridA").innerHeight();
-            var gridB_Width = $(".gridA").innerWidth() * 2;
+            var gridB_Width = $(".gridB").innerWidth() * 2;
             var gridB_height = $(".gridB").innerHeight();
+
+            var gridC_Width = $(".gridC").innerWidth();
+            var gridC_Height = $(".gridC").innerHeight();
+            var gridD_Width = $(".gridD").innerWidth() * 2;
+            var gridD_height = $(".gridD").innerHeight();
             console.log(gridA_Width);
             hideInfoSlide();
             var tlsetScene = new TimelineMax();
             tlsetScene.set(".gridA", { backgroundPosition: "-" + gridA_Width + "px 0px" });
             tlsetScene.set(".gridB", { backgroundPosition: "-" + gridB_Width + "px -" + gridA_Height + "px" });
+            tlsetScene.set(".gridD", { backgroundPosition: gridD_Width + "px 0px" });
+            tlsetScene.set(".gridC", { backgroundPosition: gridC_Width + "px " + gridC_Height + "px" });
+
+            $('.gridA .textWrapper, .gridD .textWrapper').children().each(function(index, el) {
+                tlsetScene.set(el, { opacity: 0 });
+            });
+            $('.gridB .heroContentImageWrapper , .gridC .heroContentImageWrapper').children().each(function(index, el) {
+                console.log(el);
+                tlsetScene.set(el, { opacity: 0, y: -100 });
+            });
             var containerSetScene = new ScrollMagic.Scene({
                     triggerElement: '.contentHeroImageContainer',
                     triggerHook: 0.5,
@@ -240,8 +255,13 @@ var myTask = Vue.component('infocontent-template', {
             tlSceneAction.to(".gridB", .5, { ease: Expo.easeIn, backgroundPosition: "-" + gridB_Width / 2 + "px -" + val + "px" }, "-=.5");
             tlSceneAction.to(".gridB", .5, { backgroundPosition: "0px -" + val + "px" });
             tlSceneAction.to(".gridB", .5, { ease: Expo.easeOut, backgroundPosition: "0px 0px" });
-
-
+            $('.gridA .textWrapper').children().each(function(index, el) {
+                tlSceneAction.to(el, .5, { ease: Expo.easeIn, opacity: 1 });
+            });
+            $('.gridB .heroContentImageWrapper').children().each(function(index, el) {
+                console.log(el);
+                tlSceneAction.to(el, 1, { ease: Expo.easeIn, opacity: 1, y: 0 }, "-=1");
+            });
 
             var containerSceneAction = new ScrollMagic.Scene({
                     triggerElement: '.gridA',
@@ -249,6 +269,28 @@ var myTask = Vue.component('infocontent-template', {
                     reverse: true
                 })
                 .setTween(tlSceneAction)
+                // .addIndicators()
+                .addTo(controller);
+
+            var tlSceneAction2 = new TimelineMax();
+            var val = gridC_Height - gridD_height;
+            tlSceneAction2.to(".gridD", .5, { ease: Expo.easeIn, backgroundPosition: "0px 0px" });
+            tlSceneAction2.to(".gridC", .5, { ease: Expo.easeIn, backgroundPosition: gridB_Width / 2 + "px " + val + "px" }, "-=.5");
+            tlSceneAction2.to(".gridC", .5, { backgroundPosition: "0px " + val + "px" });
+            tlSceneAction2.to(".gridC", .5, { ease: Expo.easeOut, backgroundPosition: "0px 0px" });
+            $('.gridD .textWrapper').children().each(function(index, el) {
+                tlSceneAction2.to(el, .5, { ease: Expo.easeIn, opacity: 1 });
+            });
+            $('.gridC .heroContentImageWrapper').children().each(function(index, el) {
+                console.log(el);
+                tlSceneAction2.to(el, 1, { ease: Expo.easeIn, opacity: 1, y: 0 }, "-=1");
+            });
+            var containerSceneAction = new ScrollMagic.Scene({
+                    triggerElement: '.gridA',
+                    triggerHook: 0.1,
+                    reverse: true
+                })
+                .setTween(tlSceneAction2)
                 // .addIndicators()
                 .addTo(controller);
         },
@@ -299,7 +341,7 @@ var myTask = Vue.component('infocontent-template', {
             tlSceneAction.to(".contentHeroImage", 1, { rotation: 0, yPercent: "0%" });
             var containerSceneAction = new ScrollMagic.Scene({
                     triggerElement: '.contentHeroImageContainer',
-                    triggerHook: 0.7,
+                    triggerHook: 0.5,
                     reverse: true
                 })
                 .setTween(tlSceneAction)
@@ -460,24 +502,13 @@ var myTask = Vue.component('infocontent-template', {
                 // $(".carousel-inner1").addClass("m-auto")
                 var tlsetScene = new TimelineMax();
                 tlsetScene.set("#carousel1", {
-                    opacity: 0.3,
-                    // perspective(525px) translateZ(0px) rotateX(0deg) rotateY(0deg) scale(0.478018, 0.478018);
-                    // perspective: 50,
-                    // translateZ: 25,
-                    // // transform: "translateZ(50px) rotateX(8deg) rotateY(6deg)",
-                    // // perspective(525px) translateZ(25px) rotateX(8deg) rotateY(6deg) scale(0.5)
-                    // // perspective(525px) rotateX(8deg) rotateY(6deg) scale(0.5)
-                    // // translateZ: "25px",
+                    opacity: 0.6,
+                    scale: 0.5,
                     // // perspective(500px) translateZ(-30px) rotateY(8deg) rotateX(6deg)
-                    // rotationX: 8,
-                    // rotationY: 6,
-                    // scale: "0.45",
-
                     transformPerspective: 2500,
                     translateZ: 150,
                     rotationX: 10,
                     rotationY: 30,
-
                     onCompleteParams: [tlsetScene],
                     onComplete: function() {
                         setTimeout(function() {
@@ -488,19 +519,16 @@ var myTask = Vue.component('infocontent-template', {
                 tlsetScene.set(".carousel-inner", { boxShadow: "0 20px 20px -20px rgba(69, 44, 44, 0.85)" });
                 var containerSetScene = new ScrollMagic.Scene({
                         triggerElement: '.carousel-container1',
-                        triggerHook: 0.99,
+                        triggerHook: 1.1,
                         reverse: true
                     })
                     .setTween(tlsetScene)
-                    // .addIndicators()
                     .addTo(controller);
                 var tlSceneAction2 = new TimelineMax();
                 tlSceneAction2.to("#carousel1", .5, {
                     ease: Linear.easeIn,
                     scale: 1,
                     opacity: 1,
-
-                    // transformPerspective: 0,
                     translateZ: 0,
                     rotationX: 0,
                     rotationY: 0,
@@ -509,7 +537,6 @@ var myTask = Vue.component('infocontent-template', {
                     ease: Linear.easeIn,
                     boxShadow: "0 40px 40px -20px rgba(56, 54, 54, 0.85)"
                 }, "-=.5");
-
                 var scene0 = new ScrollMagic.Scene({
                         triggerElement: "#carousel1",
                         triggerHook: "-1",
@@ -517,7 +544,6 @@ var myTask = Vue.component('infocontent-template', {
                     })
                     .setPin("#carousel1", { pushfollowers: true })
                     .setTween(tlSceneAction2)
-                    // .addIndicators({ name: "Carousel pin Trigger" })
                     .addTo(controller);
 
                 // Set Scene for second carousel
