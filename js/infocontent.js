@@ -287,7 +287,7 @@ var myTask = Vue.component('infocontent-template', {
             });
             var containerSceneAction = new ScrollMagic.Scene({
                     triggerElement: '.gridA',
-                    triggerHook: 0.1,
+                    triggerHook: -1,
                     reverse: true
                 })
                 .setTween(tlSceneAction2)

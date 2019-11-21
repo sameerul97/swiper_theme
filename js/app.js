@@ -36,13 +36,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
     })
     global_brow_height = window.innerHeight,
         global_brow_width = window.innerWidth;
-
-
+    console.log($(".gridA").innerHeight())
+    showInfoSlide()
 
     function resizeContents() {
         if (window.innerWidth >= 992) {
             // Setting Grid content
             var marginTop = $(".gridA").innerHeight() - $(".gridB").innerHeight();
+            console.log(marginTop)
             $(".pushUp").css({
                 "margin-top": +marginTop + "px"
             })
@@ -130,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
     $(".slideContainer").attr("style", previousCss ? previousCss : "");
-
+    hideInfoSlide();
 
     // Animating heroSliderImage
     initOnce = false;
