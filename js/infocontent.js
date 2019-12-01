@@ -56,6 +56,7 @@ var myTask = Vue.component('infocontent-template', {
             this.gridContentInit();
             this.galleryInit();
             this.smgInitContentHeroImage();
+            this.articleContext();
             // this.cursorInit();
             this.smgInitGallery();
             this.carouselInit();
@@ -188,11 +189,11 @@ var myTask = Vue.component('infocontent-template', {
                 // console.log(optionHeight, $("#js-scene").height())
                 // Setting Parallax for Gallery Section
 
-                // var tempHeight = $("#gallery").outerHeight();
-                // $("#gallery").css({ "height": tempHeight * 2 + "px" })
-                // $("#js-scene").css({ "height": tempHeight * 2 + "px" })
-                // $("#gallery").css({ "margin-top": tempHeight / 7 + "px" })
-                // $("#gallery").css({ "margin-bottom": tempHeight / 7 + "px" })
+                var tempHeight = $("#gallery").outerHeight();
+                $("#gallery").css({ "height": tempHeight * 1.3 + "px" })
+                $("#js-scene").css({ "height": tempHeight * 1.3 + "px" })
+                    // $("#gallery").css({ "margin-top": tempHeight / 7 + "px" })
+                    // $("#gallery").css({ "margin-bottom": tempHeight / 7 + "px" })
             } else {
                 // console.log(optionHeight, $("#js-scene").height())
                 // Setting Parallax for Gallery Section
@@ -490,6 +491,65 @@ var myTask = Vue.component('infocontent-template', {
                 var newposY = y;
                 $(".myDiv").css("transform", "translate3d(" + newposX + "px," + newposY + "px,0px)");
             });
+        },
+        articleContext: function() {
+            // init
+            var ctrl = new ScrollMagic.Controller({});
+
+            // Scene 1
+            var iphoneIntroTl = new TimelineMax();
+            iphoneIntroTl
+                .to(".iphone", .5, {
+                    yPercent: 50,
+                    zIndex: 90,
+                    ease: Power4.easeInOut
+                })
+            new ScrollMagic.Scene({
+                    duration: '20%',
+                    triggerHook: .99
+                })
+                .setTween(iphoneIntroTl)
+                .triggerElement(".imageHolder")
+                // .addIndicators(true)
+                .addTo(ctrl);
+
+
+            // Scene 2
+            var iphoneIntroTl = new TimelineMax();
+            iphoneIntroTl
+                .to(".iphone", 1, {
+                    yPercent: 0,
+                    xPercent: -100,
+                    ease: Power4.easeInOut
+                }).to(".imageHolder", .1, {
+                    zIndex: 7
+                })
+
+            new ScrollMagic.Scene({
+                    duration: '50%',
+                    triggerHook: 0.5
+                })
+                .setTween(iphoneIntroTl)
+                .triggerElement(".imageHolder")
+                // .addIndicators(true)
+                .addTo(ctrl);
+
+            // Scene 3
+            var iphoneIntroTl2 = new TimelineMax();
+            iphoneIntroTl2
+                .to(".imageHolder", .1, {
+                    zIndex: 7
+                })
+            new ScrollMagic.Scene({
+                    duration: '400%',
+                    triggerHook: 0
+                })
+                .setTween(iphoneIntroTl2)
+                .triggerElement(".imageHolder")
+                .setPin(".iphone")
+                // Set pin on the element you want to drag around the site !!!!
+                // .addIndicators(true)
+                .addTo(ctrl);
         },
         carouselInit: function(event) {
             if (global_brow_width > 992 && !this.initCarouselOnce) {

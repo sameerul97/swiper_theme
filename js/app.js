@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         global_brow_width = window.innerWidth;
     console.log($(".gridA").innerHeight())
     showInfoSlide()
+    var tempHeight = $("#gallery").outerHeight();
 
     function resizeContents() {
         if (window.innerWidth >= 992) {
@@ -47,6 +48,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
             $(".pushUp").css({
                 "margin-top": +marginTop + "px"
             })
+            $("#gallery").css({ "height": tempHeight * 1.3 + "px" })
+            $("#js-scene").css({ "height": tempHeight * 1.3 + "px" })
         }
         // else if (global_brow_width > 1200) {
 
@@ -71,8 +74,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     "margin-top": "0" + "px"
                 })
                 // var tempHeight = $("#gallery").outerHeight();
-                // $("#gallery").css({ "height": "auto" })
-                // $("#js-scene").css({ "height": "auto" })
+            $("#gallery").css({ "height": "auto" })
+            $("#js-scene").css({ "height": "auto" })
                 // $("#gallery").css({ "margin-top": tempHeight / 7 + "px" })
                 // $("#gallery").css({ "margin-bottom": tempHeight / 7 + "px" })
         }
