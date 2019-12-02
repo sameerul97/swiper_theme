@@ -59,7 +59,7 @@ var myTask = Vue.component('infocontent-template', {
             this.articleContext();
             // this.cursorInit();
             this.smgInitGallery();
-            this.carouselInit();
+            // this.carouselInit();
 
             // Testing this 
             // this.smgInitGallery2();
@@ -180,7 +180,6 @@ var myTask = Vue.component('infocontent-template', {
             // console.log(optionHeight, $("#js-scene").height())
             // Setting Parallax for Gallery Section
             if (global_brow_width > 1200) {
-
                 var scene = document.getElementById('js-scene');
                 parallax = new Parallax(scene, {
                     selector: '.layer',
@@ -498,6 +497,13 @@ var myTask = Vue.component('infocontent-template', {
 
             // Scene 1
             var iphoneIntroTl = new TimelineMax();
+            // articleTextWrapper
+            iphoneIntroTl
+                .to(".iphone", .5, {
+                    yPercent: 50,
+                    zIndex: 90,
+                    ease: Power4.easeInOut
+                })
             iphoneIntroTl
                 .to(".iphone", .5, {
                     yPercent: 50,
@@ -519,7 +525,7 @@ var myTask = Vue.component('infocontent-template', {
             iphoneIntroTl
                 .to(".iphone", 1, {
                     yPercent: 0,
-                    xPercent: -100,
+                    xPercent: -50,
                     ease: Power4.easeInOut
                 }).to(".imageHolder", .1, {
                     zIndex: 7
@@ -541,7 +547,7 @@ var myTask = Vue.component('infocontent-template', {
                     zIndex: 7
                 })
             new ScrollMagic.Scene({
-                    duration: '400%',
+                    duration: '300%',
                     triggerHook: 0
                 })
                 .setTween(iphoneIntroTl2)

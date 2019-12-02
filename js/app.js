@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     }
     window.onresize = resizeContents;
+    $(".iphone").css({ width: parseInt($(".articleTextWrapper").css("width").replace(/[^-\d\.]/g, '')) + "px" })
 
     // Vibrant JS
     // var v = new Vibrant();

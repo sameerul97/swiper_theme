@@ -643,18 +643,67 @@
  .imageHolder {
      position: relative;
  }
+ /* Multiple approaches, use background image rather image tag */
+ /* Make the width same article text column */
  
  .iphone {
-     width: 290px;
+     width: 370px;
      height: 600px;
+     height: 600px;
+     /* max-width: 100%; */
      border-radius: 10px;
      position: absolute;
      top: 50%;
      left: 50%;
      transform: translate(-50%, -50%);
-     background-color: #3757D0;
+     text-align: center;
+     /* background-color: #3757D0;
      background-image: -webkit-radial-gradient(#81bcff, #5d7fce);
-     background-image: radial-gradient(#81bcff, #5d7fce);
+     background-image: radial-gradient(#81bcff, #5d7fce); */
+     /* width: 290px;
+     height: 600px;
+     max-width: 100%;
+     border-radius: 10px;
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     background: url(https://images.unsplash.com/photo-1490351267196-b7a67e26e41b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=329&q=80);
+     background-size: cover;
+     background-repeat: no-repeat; */
+ }
+ 
+ .iphone img {
+     border-radius: 10px;
+ }
+ 
+ .iphone2 {
+     /* width: 370px;
+     height: 600px;
+     height: 600px; */
+     /* max-width: 100%; */
+     border-radius: 10px;
+     position: absolute;
+     top: 50%;
+     /* left: 50%; */
+     transform: translateY(-50%);
+     text-align: center;
+     /* width: 370px; */
+     /* height: 600px; */
+     /* height: 600px; */
+     /* max-width: 100%; */
+     border-radius: 10px;
+     position: absolute;
+     top: 90%;
+     /* left: 50%; */
+     /* transform: translateY(-50%); */
+     text-align: center;
+ }
+ 
+ .iphone2 img {
+     -webkit-filter: grayscale(100%);
+     filter: grayscale(100%);
+     border-radius: 10px;
  }
  
  .articleHeroImage {
