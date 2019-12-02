@@ -472,6 +472,13 @@
      /* z-index: 999; */
  }
  
+ .myCarousel {
+     /* position: absolute; */
+     /* top: 50%; */
+     /* left: 50%; */
+     /* transform: translateY(-50%); */
+ }
+ 
  @keyframes shaky {
      10%,
      90% {
@@ -513,14 +520,14 @@
      position: relative;
      top: 0px !important;
      /* display: none; */
-     transition: transform 0.3s ease 0s;
+     /* transition: transform 0.3s ease 0s; */
  }
  
  .scrollmagic-pin-spacer {
      /* padding-top: 0px !important; */
      /* height: auto !important;
      min-height: 363px !important; */
-     transition: padding, opacity, transform 0.3s ease 0s;
+     /* transition: padding, opacity, transform 0.3s ease 0s; */
  }
  
  #carousel2 {

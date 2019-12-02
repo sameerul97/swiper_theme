@@ -59,7 +59,7 @@ var myTask = Vue.component('infocontent-template', {
             this.articleContext();
             // this.cursorInit();
             this.smgInitGallery();
-            // this.carouselInit();
+            this.carouselInit();
             this.progressBarInit();
             // Testing this 
             // this.smgInitGallery2();
@@ -567,7 +567,7 @@ var myTask = Vue.component('infocontent-template', {
                 // Set Scene carousel 1
                 // $(".carousel-inner1").addClass("m-auto")
                 var tlsetScene = new TimelineMax();
-                tlsetScene.set("#carousel1", {
+                tlsetScene.set(".myCarousel", {
                     opacity: 0.6,
                     scale: 0.5,
                     // // perspective(500px) translateZ(-30px) rotateY(8deg) rotateX(6deg)
@@ -575,12 +575,12 @@ var myTask = Vue.component('infocontent-template', {
                     translateZ: 150,
                     rotationX: 10,
                     rotationY: 30,
-                    onCompleteParams: [tlsetScene],
-                    onComplete: function() {
-                        setTimeout(function() {
-                            $("#carousel1").addClass("carousel1TempClass")
-                        }, 2000)
-                    }
+                    // onCompleteParams: [tlsetScene],
+                    // onComplete: function() {
+                    //     setTimeout(function() {
+                    //         $("#carousel1").addClass("carousel1TempClass")
+                    //     }, 2000)
+                    // }
                 });
                 tlsetScene.set(".carousel-inner", { boxShadow: "0 20px 20px -20px rgba(69, 44, 44, 0.85)" });
                 var containerSetScene = new ScrollMagic.Scene({
@@ -591,7 +591,7 @@ var myTask = Vue.component('infocontent-template', {
                     .setTween(tlsetScene)
                     .addTo(controller);
                 var tlSceneAction2 = new TimelineMax();
-                tlSceneAction2.to("#carousel1", .5, {
+                tlSceneAction2.to(".myCarousel", .5, {
                     ease: Linear.easeIn,
                     scale: 1,
                     opacity: 1,
@@ -604,14 +604,14 @@ var myTask = Vue.component('infocontent-template', {
                     boxShadow: "0 40px 40px -20px rgba(56, 54, 54, 0.85)"
                 }, "-=.5");
                 var scene0 = new ScrollMagic.Scene({
-                        triggerElement: "#carousel1",
+                        triggerElement: ".carousel-section",
                         triggerHook: "-1",
                         duration: "100%"
                     })
-                    .setPin("#carousel1", { pushfollowers: true })
+                    .setPin(".carousel-section", { pushfollowers: true })
                     .setTween(tlSceneAction2)
-                    .addTo(controller);
-
+                    .addTo(controller)
+                    .addIndicators(true);
                 // Set Scene for second carousel
                 // $(".carousel-inner2").addClass("m-auto")
                 var tlSceneAction2 = new TimelineMax();
