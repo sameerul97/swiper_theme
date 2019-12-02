@@ -60,7 +60,7 @@ var myTask = Vue.component('infocontent-template', {
             // this.cursorInit();
             this.smgInitGallery();
             // this.carouselInit();
-
+            this.progressBarInit();
             // Testing this 
             // this.smgInitGallery2();
 
@@ -643,6 +643,40 @@ var myTask = Vue.component('infocontent-template', {
                     // .addIndicators({ name: "Carousel pin Trigger" })
                     .addTo(controller);
             }
+        },
+        progressBarInit: function() {
+            var ctrl = new ScrollMagic.Controller({});
+            // Set progres bar height 
+            var progress_bar1 = new TimelineMax();
+            progress_bar1
+                .set(".progress, .progress-bar", {
+                    height: "8px",
+                    zIndex: 9999999999
+                })
+
+            var progress_bar = new TimelineMax();
+            progress_bar
+                .to(".progress", .5, {
+                    marginLeft: 0,
+                    ease: Power4.easeInOut
+                })
+            new ScrollMagic.Scene({
+                    triggerHook: 0
+                })
+                .setTween(progress_bar)
+                .setPin(".progress-bar")
+                .triggerElement(".progress")
+                // .addIndicators(true)
+                .addTo(ctrl);
+
+            $(window).scroll(function() {
+                var _divider = $(".contentHolder").innerHeight() / 100;
+                var _scrollPercent = parseInt($(window).scrollTop() / _divider);
+                console.log(_scrollPercent);
+                $(".progress-bar").css({
+                    "width": _scrollPercent + "%"
+                })
+            });
         },
     }
     // props: ['task']
