@@ -22,7 +22,10 @@ var myTask = Vue.component('infocontent-template', {
             projectTitle: this.project,
             count: 0,
             galleryAnimated: true,
-            initCarouselOnce: false
+            initCarouselOnce: false,
+            progressBarScene: new ScrollMagic.Scene({
+                    triggerHook: 0
+                })
                 // imgData: store.getters.getSwiperAnimData
                 // required: true
         } //Notice: in components data should return an object. For example "return { someProp: 1 }"
@@ -62,7 +65,7 @@ var myTask = Vue.component('infocontent-template', {
             this.carouselInit();
             this.progressBarInit();
             // Testing this 
-            // this.smgInitGallery2();
+            this.smgInitGallery2();
 
             // Initiate gallery once the project is loaded
             console.log($("#gallery").outerHeight())
@@ -70,6 +73,9 @@ var myTask = Vue.component('infocontent-template', {
     },
     mounted: function() {
         console.log("Created")
+            // var progressBarScene = new ScrollMagic.Scene({
+            //         triggerHook: 0
+            //     })
             // this.imgData = store.getters.getSwiperAnimData;
         if (this.project) {
             // this.imgData = store.getters.getSwiperAnimData;
@@ -81,8 +87,8 @@ var myTask = Vue.component('infocontent-template', {
 
     },
     methods: {
-        greet: function(event) {
-
+        closeSlide: function(event) {
+            this.progressBarScene.removePin(true);
             // Call Mutation method
             // if (this.count === 0) {
             //     store.commit('testMutation', "TEST");
@@ -660,14 +666,13 @@ var myTask = Vue.component('infocontent-template', {
                     marginLeft: 0,
                     ease: Power4.easeInOut
                 })
-            new ScrollMagic.Scene({
-                    triggerHook: 0
-                })
+            this.progressBarScene
                 .setTween(progress_bar)
                 .setPin(".progress-bar")
                 .triggerElement(".progress")
                 // .addIndicators(true)
-                .addTo(ctrl);
+                .addTo(ctrl)
+
 
             $(window).scroll(function() {
                 var _divider = $(".contentHolder").innerHeight() / 100;
