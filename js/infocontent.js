@@ -65,7 +65,7 @@ var myTask = Vue.component('infocontent-template', {
             this.carouselInit();
             this.progressBarInit();
             // Testing this 
-            this.smgInitGallery2();
+            // this.smgInitGallery2();
 
             // Initiate gallery once the project is loaded
             console.log($("#gallery").outerHeight())
