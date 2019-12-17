@@ -255,6 +255,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
             tl0.set('.infoSection', {
                 overflowY: "hidden"
             })
+            tl0.set('.slideContainer', {
+                opacity: 1,
+                zIndex: 1,
+                display: "block"
+            })
             tl0.set('#infoSlideBackgroundimage', {
                 height: $('#' + swiper_slider_id).height() + 'px',
                 width: ($('#' + swiper_slider_id).width()) + 'px',
@@ -346,6 +351,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 ease: Expo.easeInOut,
                 fontSize: 150
             }, "-=1")
+
             tl0.to('.infoSection', 0, {
                 opacity: 1,
                 zIndex: 1,

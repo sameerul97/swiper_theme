@@ -4,4 +4,5 @@
 .parent.js
 .node_modules
 .automation_scripts
-.automation_scripts/node_modules
+automation_scripts/node_modules
+img/blurred/DS_Store

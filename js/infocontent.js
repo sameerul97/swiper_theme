@@ -61,14 +61,14 @@ var myTask = Vue.component('infocontent-template', {
             this.smgInitContentHeroImage();
             this.articleContext();
             // this.cursorInit();
-            this.smgInitGallery();
-            this.carouselInit();
+            // this.smgInitGallery();
+            // this.carouselInit();
             this.progressBarInit();
             // Testing this 
             // this.smgInitGallery2();
 
             // Initiate gallery once the project is loaded
-            console.log($("#gallery").outerHeight())
+            // console.log($("#gallery").outerHeight())
         }
     },
     mounted: function() {
@@ -154,6 +154,11 @@ var myTask = Vue.component('infocontent-template', {
                     x: "0%"
                 }, "-=1")
             }
+            tl0.set('.slideContainer', {
+                opacity: 0,
+                zIndex: -1,
+                display: "none"
+            })
             tl0.to(".textId", 1, {
                 duration: 2,
                 ease: Expo.easeInOut,
@@ -163,6 +168,7 @@ var myTask = Vue.component('infocontent-template', {
                 opacity: 0,
                 zIndex: -1
             })
+
             $(".onepage-pagination").css({
                 "opacity": 1
             })
@@ -175,7 +181,7 @@ var myTask = Vue.component('infocontent-template', {
                     "imgScale": ""
                 }
                 // global_TimelineMax.clear();
-            global_TimelineMax.set('.imageWrapper', { clearProps: "left,top,height,padding" });
+                // global_TimelineMax.set('.imageWrapper', { clearProps: "left,top,height,padding" });
             var previousCss = $(".slideContainer").attr("style");
             $(".slideContainer").css({
                 // position: 'absolute', // Optional if #myDiv is already absolute
@@ -216,6 +222,7 @@ var myTask = Vue.component('infocontent-template', {
             // $("#gallery").css({ "margin-bottom": tempHeight / 7 + "px" })
             $(".slideContainer").attr("style", previousCss ? previousCss : "");
             // })
+
         },
         gridContentInit: function() {
             console.log("@Grid Content Initialising");
@@ -309,7 +316,7 @@ var myTask = Vue.component('infocontent-template', {
                 parallax.destroy();
                 // parallax = null;
                 this.galleryAnimated = false;
-                global_TimelineMax = new TimelineMax();
+                // global_TimelineMax = new TimelineMax();
                 $(".heroImageAnim").removeClass("heroImageAnim")
 
                 global_TimelineMax.to('#gallery .imageWrapper', 1, {
@@ -617,9 +624,9 @@ var myTask = Vue.component('infocontent-template', {
                     .setPin(".carousel-section", { pushfollowers: true })
                     .setTween(tlSceneAction2)
                     .addTo(controller)
-                    .addIndicators(true);
-                // Set Scene for second carousel
-                // $(".carousel-inner2").addClass("m-auto")
+                    // .addIndicators(true);
+                    // Set Scene for second carousel
+                    // $(".carousel-inner2").addClass("m-auto")
                 var tlSceneAction2 = new TimelineMax();
                 tlSceneAction2.set("#carousel2", {
                     onCompleteParams: [tlSceneAction2],
@@ -677,7 +684,7 @@ var myTask = Vue.component('infocontent-template', {
             $(window).scroll(function() {
                 var _divider = $(".contentHolder").innerHeight() / 100;
                 var _scrollPercent = parseInt($(window).scrollTop() / _divider);
-                console.log(_scrollPercent);
+                // console.log(_scrollPercent);
                 $(".progress-bar").css({
                     "width": _scrollPercent + "%"
                 })
