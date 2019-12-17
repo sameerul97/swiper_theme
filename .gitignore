@@ -1,4 +1,6 @@
 .history
 .vscode
 .index_backup.html
-parent.js
+.parent.js
+.node_modules
+.automation_scripts

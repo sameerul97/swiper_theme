@@ -39,6 +39,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     console.log($(".gridA").innerHeight())
     showInfoSlide()
     var tempHeight = $("#gallery").outerHeight();
+    var lazyLoadInstance = new LazyLoad({
+        elements_selector: ".lazy",
+        load_delay: 700 //adjust according to use case
+    });
 
     function resizeContents() {
         if (window.innerWidth >= 992) {

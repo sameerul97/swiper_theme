@@ -20,7 +20,7 @@ var store = new Vuex.Store({
         },
         data: [{
             // imgSrc: 'img/seoul2.jpg',
-            imgSrc: 'img/seoul.jpeg',
+            imgSrc: 'img/seoul2.jpg',
             swiper_id: 'swiper-slide-1',
             wrapper_id: 'wrapper1',
             imageId_classname: 'bg1',
