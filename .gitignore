@@ -4,3 +4,4 @@
 .parent.js
 .node_modules
 .automation_scripts
+.automation_scripts/node_modules
